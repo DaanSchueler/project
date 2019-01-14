@@ -1,6 +1,8 @@
 #register
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, url_for
+from passlib.apps import custom_app_context as pwd_context
+from tempfile import mkdtemp
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
