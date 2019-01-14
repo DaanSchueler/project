@@ -7,6 +7,9 @@ from tempfile import mkdtemp
 # configure application
 app = Flask(__name__)
 
+# configure CS50 Library to use SQLite database
+db = SQL("sqlite:///finance.db")
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Log user in."""
