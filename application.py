@@ -10,6 +10,8 @@ app = Flask(__name__)
 # configure CS50 Library to use SQLite database
 db = SQL("sqlite:///webik22.db")
 
+@app.route("/")
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Log user in."""
