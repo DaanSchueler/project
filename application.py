@@ -8,7 +8,7 @@ from tempfile import mkdtemp
 app = Flask(__name__)
 
 # configure CS50 Library to use SQLite database
-db = SQL("sqlite:///finance.db")
+db = SQL("sqlite:///webik22.db")
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
