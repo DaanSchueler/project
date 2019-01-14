@@ -4,6 +4,9 @@ from flask import Flask, flash, redirect, render_template, request, session, url
 from passlib.apps import custom_app_context as pwd_context
 from tempfile import mkdtemp
 
+# configure application
+app = Flask(__name__)
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Log user in."""
