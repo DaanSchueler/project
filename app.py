@@ -27,4 +27,4 @@ db = SQL("sqlite:///recepts.db")
 
 @app.route("/")
 def index():
-    return "Het werkt!"
+    return "Het werkt! lachen"
