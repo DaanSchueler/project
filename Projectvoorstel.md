@@ -10,7 +10,6 @@ De features waar wij over twijfelen zijn:
 -   Optie om ingrediënten te selecteren en op basis daarvan recepten tonen
 
 -   Optie om recepten te selecteren op in combinatie met speciale dieet zoals: aziatisch  vegetarisch, frutarian etc.
--   retetet
 
 ## Features
 
