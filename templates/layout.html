@@ -18,7 +18,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
         <title>Allegry Recepies: {% block title %}{% endblock %}</title>
-        <link rel="icon" href="https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--51643_11.jpg?itok=I_hF8vFL" border="10>
+        <link rel="icon" href="https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--51643_11.jpg?itok=I_hF8vFL" border="10">
     </head>
 
     <body>
@@ -45,6 +45,9 @@
                                 <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                             </ul>
                         {% else %}
+                            <ul class="nav navbar-nav">
+                                 <li><a href="{{ url_for('search') }}">Search</a></li>
+                            </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="{{ url_for('register') }}">Register</a></li>
                                 <li><a href="{{ url_for('login') }}">Log In</a></li>
