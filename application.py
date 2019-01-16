@@ -140,7 +140,9 @@ def search():
 
     if request.method == "POST":
         terms = str()
-        for checkbox in 'gluten-free', 'peanut-free', 'seafood-free':
+
+        all_allergies = ['gluten-free','peanut-free','seafood-free','sesame-free','soy-free','dairy-free','egg-free','sulfite-free','wheat-free','tree nut-free']
+        for checkbox in all_allergies:
             allergy = request.form.get(checkbox)
             if allergy:
                 terms += "&allowedAllergy[]=" + allergy
