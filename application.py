@@ -139,15 +139,22 @@ def logout():
 def search():
 
     if request.method == "POST":
-        terms = str()
+        allergy_terms = str()
+        diet_terms = str()
 
         all_allergies = ['gluten-free','peanut-free','seafood-free','sesame-free','soy-free','dairy-free','egg-free','sulfite-free','wheat-free','tree nut-free']
         for checkbox in all_allergies:
             allergy = request.form.get(checkbox)
             if allergy:
-                terms += "&allowedAllergy[]=" + allergy
+                allergy_terms += "&allowedAllergy[]=" + allergy
 
-        t = requests.get("http://api.yummly.com/v1/api/recipes?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e" + terms)
+        all_diets = ["Ketogenic","Lacto vegetarian","Ovo vegetarian","Pescetarian","Vegan","Low FODMAP","Lacto-ovo vegetarian","Paleo"]
+        for checkbox in all_diets:
+            diet = request.form.get(checkbox)
+            if diet:
+                diet_terms += "&allowedDiet[]=" + diet
+
+        t = requests.get("http://api.yummly.com/v1/api/recipes?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e&requirePictures=true" + allergy_terms + diet_terms)
         x = json.loads(t.text)
         print(x["criteria"])
         for i in range(len(x["matches"])):
