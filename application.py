@@ -25,7 +25,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # configure CS50 Library to use SQLite database
-db = SQL("sqlite:///users.db")
+db = SQL("sqlite:///recepts.db")
 
 @app.route("/")
 @app.route("/index")
