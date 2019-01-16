@@ -4,6 +4,11 @@ from flask_session import Session
 from tempfile import mkdtemp
 from passlib.apps import custom_app_context as pwd_context
 
+import requests
+import json
+import pprint as pp
+
+
 from helpers import *
 
 # configure application
@@ -130,3 +135,22 @@ def logout():
     # redirect user to login form
     return redirect(url_for("index"))
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+
+    if request.method == "POST":
+        terms = str()
+        for checkbox in 'gluten-free', 'peanut-free', 'seafood-free':
+            allergy = request.form.get(checkbox)
+            if allergy:
+                terms += "&allowedAllergy[]=" + allergy
+
+        t = requests.get("http://api.yummly.com/v1/api/recipes?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e" + terms)
+        x = json.loads(t.text)
+        print(x["criteria"])
+        for i in range(len(x["matches"])):
+            pp.pprint(x["matches"][i])
+            print()
+
+    else:
+        return render_template("search.html")
