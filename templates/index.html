@@ -5,13 +5,44 @@
 {% endblock %}
 
 {% block main %}
-    <body>
-        <div id="paragraph">
-        <p>This is a page which searches recipies for people with allergies</p></div>
-        <ul>
-        <i><u><li><a href="https://www.bbcgoodfood.com/recipes/4683/pizza-margherita-in-4-easy-steps" target="_blank">Margarita<br><img src="https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--51643_11.jpg?itok=I_hF8vFL" border="10"></a></li><br>
-        <li><a href="https://www.bbcgoodfood.com/recipes/620636/mushroom-pizza" target="_blank">Fungi<br><img src="https://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/user-recipe/006ts_4.jpg?itok=oR5wqTaC" border="10"></a></li><br>
-        <li><a href="https://www.bbcgoodfood.com/recipes/3265/florentine-pizza" target="_blank">Florentine<br><img src="https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--4885_12.jpg?itok=pSWTOI2Q" border="10"></a></li><br></i></u>
-        </ul>
-    </body>
+<body>
+
+  <div class="container">
+    <h2>Image Gallery</h2>
+    <p>The .thumbnail class can be used to display an image gallery.</p>
+    <p>The .caption class adds proper padding and a dark grey color to text inside thumbnails.</p>
+    <p>Click on the images to enlarge them.</p>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <a href="https://www.w3schools.com/w3images/lights.jpg" target="_blank">
+            <img src="https://www.w3schools.com/w3images/lights.jpg" alt="Lights" style="width:100%">
+            <div class="caption">
+              <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <a href="https://www.w3schools.com/w3images/nature.jpg" target="_blank">
+            <img src="https://www.w3schools.com/w3images/nature.jpg" alt="Nature" style="width:100%">
+            <div class="caption">
+              <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <a href="https://www.w3schools.com/w3images/fjords.jpg" target="_blank">
+            <img src="https://www.w3schools.com/w3images/fjords.jpg" alt="Fjords" style="width:100%">
+            <div class="caption">
+              <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
