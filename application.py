@@ -187,12 +187,8 @@ def account():
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
 
-        # ensure username was submitted
-        if not request.form.get("username"):
-            return ("must provide username")
-
         # ensure old password was submitted
-        elif not request.form.get("Old password"):
+        if not request.form.get("Old password"):
             return ("must provide password")
 
         # query database for username
