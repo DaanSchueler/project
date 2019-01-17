@@ -1,0 +1,62 @@
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    
+    <title>Allergy Recepies: {% block title %}{% endblock %}</title>
+    
+    </head>
+    
+    <body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="#">Allergy recepies</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
+          <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
+          <a class="nav-item nav-link" href="{{ url_for('account') }}">My Account</a>
+      </div>
+    </nav>
+    <div class="container register">
+                    <div class="row">
+                        <div class="col-md-3 register-left">
+                            <img src="https://images-na.ssl-images-amazon.com/images/I/61hI0Z08K0L.png" alt=""/>
+                            <h3>Glad you're back!</h3>
+                        </div>
+                        <div class="col-md-9 register-right">
+                            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                            </ul>
+                            <form action="{{ url_for('login') }}" method="post">
+                                <fieldset>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <h3 class="register-heading">Login</h3>
+                                    <div class="row register-form">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text"/>
+                                            </div>
+                                        <div class="form-group">
+                                            <input class="form-control" name="password" placeholder="Password" type="password"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-default" type="submit">Login</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                </fieldset>
+                                </form>
+                                    </body>
+    
+    
