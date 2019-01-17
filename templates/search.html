@@ -6,7 +6,7 @@
 
 {% block main %}
     <form action="{{ url_for('search') }}" method="post">
-
+        <fieldset>
         <p>ALLERGIES</p>
         <div class="checkbox">
           <label><input type="checkbox" name="gluten-free" value="393^Gluten-Free">Gluten-Free</label>
@@ -47,7 +47,8 @@
         <div class="checkbox">
               <label><input type="checkbox" name="tree nut-free" value="395^Tree Nut-Free">Tree Nut-Free</label>
         </div>
-
+        </fieldset>
+        <fieldset>
         <p>DIETS</p>
          <div class="checkbox">
               <label><input type="checkbox" name="Ketogenic" value="406^Ketogenic">Ketogenic</label>
@@ -80,7 +81,7 @@
         <div class="checkbox">
               <label><input type="checkbox" name="Paleo" value="403^Paleo">Paleo</label>
         </div>
-
+        </fieldset>
          <div class="form-group">
             <button class="btn btn-default" type="submit">Submit</button>
         </div>
