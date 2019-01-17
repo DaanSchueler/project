@@ -10,16 +10,15 @@
 
     <hgroup class="mb20">
 		<h1>Search Results</h1>
-		<h2 class="lead"> Results were found for the search for <strong class="text-danger">{{all_checked}}</strong></h2>
+		<h2 class="lead"> Results found for the search for <strong class="text-danger">{{all_checked}}</strong></h2>
 	</hgroup>
 
     {% for recept in recepten %}
     <section class="col-xs-12 col-sm-6 col-md-12">
-		<article class="search-result row">
+		<article class="search-result">
 			<div class="col-xs-12 col-sm-12 col-md-3">
 
-				<a href="#" title="Lorem ipsum" class="thumbnail"><img src="{{ recept['imageUrlsBySize']['90'] }}" alt="Lorem ipsum" /></a>
-
+				<a href="#" title="Image" class="thumbnail"><img src="{{ recept['imageUrlsBySize']['90'] }}" alt="Lorem ipsum" /></a>
 			</div>
 
 			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
