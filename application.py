@@ -203,9 +203,8 @@ def account():
         password = request.form.get("New password")
         password = pwd_context.hash(password)
 
-        # user in database zetten
-        user = db.execute("INSERT INTO users (username, hash) VALUES (:username, :hashx)",
-                          username=request.form.get("username"), hashx=password)
+        # query database for username
+        rows = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
 
         # als de gebruikersnaam al bestaat
         if not user:
