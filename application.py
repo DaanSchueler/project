@@ -172,8 +172,7 @@ def search():
 
         recepten = x["matches"]
 
-        # pp.pprint(recepten)
-
+        pp.pprint(recepten)
 
         return render_template("results.html", recepten=recepten, all_checked=all_checked)
 

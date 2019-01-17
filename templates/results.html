@@ -23,8 +23,22 @@
 
 			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
 				<h3><a href="#" title="">{{ recept["recipeName"] }}</a></h3>
-				<p>Suitable courses: {{ recept["attributes"]["course"] }}</p>
-				<p>Ingredients: {{ recept["ingredients"] }}</p>
+
+				<p>
+				    Suitable course:
+				    {% for item in recept["attributes"]["course"] %}
+				    <td> {{ item }} </td>
+				    {% endfor %}
+				</p>
+
+				<p>
+				    Ingredients:
+				    {% for ingr in recept["ingredients"] %}
+				    <td> &#183; {{ ingr }} </td>
+				    {% endfor %}
+				</p>
+
+
                 <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
 			</div>
 			<span class="clearfix borda"></span>
