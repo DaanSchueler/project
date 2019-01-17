@@ -5,5 +5,17 @@
 {% endblock %}
 
 {% block main %}
+    <p>
+        {{criteria}}
+    </p>
+    <p>
+        {{all_checked}}
+    </p>
+    <p>
+        {% for recept in recepten %}
+        {{recept}}
+        {% endfor %}
+    </p>
+
 
 {% endblock %}

@@ -142,31 +142,37 @@ def search():
         allergy_terms = str()
         diet_terms = str()
         course_terms = str()
+        all_checked = []
 
-        all_allergies = ['gluten-free','peanut-free','seafood-free','sesame-free','soy-free','dairy-free','egg-free','sulfite-free','wheat-free','tree nut-free']
+        all_allergies = ['Gluten-free','Peanut-free','Seafood-free','Sesame-free','Soy-free','Dairy-free','Egg-free','Sulfite-free','Wheat-free','Tree nut-free']
         for checkbox in all_allergies:
             allergy = request.form.get(checkbox)
             if allergy:
+                all_checked.append(checkbox)
                 allergy_terms += "&allowedAllergy[]=" + allergy
 
         all_diets = ["Ketogenic","Lacto vegetarian","Ovo vegetarian","Pescetarian","Vegan","Low FODMAP","Lacto-ovo vegetarian","Paleo"]
         for checkbox in all_diets:
             diet = request.form.get(checkbox)
             if diet:
+                all_checked.append(checkbox)
                 diet_terms += "&allowedDiet[]=" + diet
 
         all_courses = ["Main Dishes","Desserts","Side Dishes","Appetizers","Salads","Breakfast and Brunch","Breads","Soups","Beverages","Condiments and Sauces","Cocktails","Snacks","Lunch"]
         for checkbox in all_courses:
             course = request.form.get(checkbox)
             if course:
+                all_checked.append(checkbox)
                 course_terms += "&allowedCourse[]=" + course
 
         t = requests.get("http://api.yummly.com/v1/api/recipes?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e&requirePictures=true" + allergy_terms + diet_terms + course_terms)
         x = json.loads(t.text)
-        print(x["criteria"])
-        for i in range(len(x["matches"])):
-            pp.pprint(x["matches"][i])
-            print()
+
+        recepten = x["matches"]
+
+        pp.pprint(recepten[0])
+
+        return render_template("results.html", recepten=recepten, all_checked=all_checked)
 
     else:
         return render_template("search.html")
