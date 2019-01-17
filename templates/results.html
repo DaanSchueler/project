@@ -6,19 +6,16 @@
 
 {% block main %}
     <p>
-        {{criteria}}
-    </p>
-    <p>
-        {{all_checked}}
+        Searched on: {{all_checked}}
     </p>
     <p></p>
     <p>
         {% for recept in recepten %}
         <p>
-            <p>{{ recept["recipeName"] }}</p>
+            <p>Recipe name: {{ recept["recipeName"] }}</p>
             <p> <img src="{{ recept['imageUrlsBySize']['90'] }}"> </p>
-            <p>{{ recept["attributes"]["course"] }}</p>
-            <p>{{ recept["ingredients"] }}</p>
+            <p>Suitable courses: {{ recept["attributes"]["course"] }}</p>
+            <p>Ingredients: {{ recept["ingredients"] }}</p>
             <p>.</p>
         </p>
         {% endfor %}
