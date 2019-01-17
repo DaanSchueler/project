@@ -191,9 +191,16 @@ def account():
         if not request.form.get("username"):
             return ("must provide username")
 
-        # ensure password was submitted
+        # ensure old password was submitted
         elif not request.form.get("Old password"):
             return ("must provide password")
+
+        # query database for username
+        rows = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
+
+        # ensure old password is correct
+        if not pwd_context.verify(request.form.get("password"), rows[0]["hash"]):
+            return apology("invalid username and/or password")
 
         # ensure password confirmation was submitted
         elif not request.form.get("New password"):
