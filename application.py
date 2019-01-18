@@ -179,6 +179,19 @@ def search():
     else:
         return render_template("search.html")
 
+@app.route("/moreinfo", methods=["GET", "POST"])
+def moreinfo():
+    # id = request.args["id"]
+    # print(id)
+    return render_template("moreinfo.html")
+
+
+
+
+
+
+
+
 @app.route("/account", methods=["GET", "POST"])
 def account():
     """Log user in."""

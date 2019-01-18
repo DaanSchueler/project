@@ -22,7 +22,7 @@
 			</div>
 
 			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-				<h3><a href="#" title="">{{ recept["recipeName"] }}</a></h3>
+				<h3><a href="/moreinfo" title="">{{ recept["recipeName"] }}</a></h3>
 
 				<p>
 				    Suitable course:
@@ -38,31 +38,31 @@
 				    {% endfor %}
 				</p>
 
-
+				<p name="id"> {{ recept["attributes"]["id"] }} </p>
                 <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
 			</div>
 			<span class="clearfix borda"></span>
 		</article>
-        {% endfor %}
+
 	</section>
-</div>
+	{% endfor %}
 
 
-    <p>
-        Searched on: {{all_checked}}
-    </p>
-    <p></p>
-    <p>
-        {% for recept in recepten %}
-        <p>
-            <p>Recipe name: {{ recept["recipeName"] }}</p>
-            <p> <img src="{{ recept['imageUrlsBySize']['90'] }}"> </p>
-            <p>Suitable courses: {{ recept["attributes"]["course"] }}</p>
-            <p>Ingredients: {{ recept["ingredients"] }}</p>
-            <p>.</p>
-        </p>
-        {% endfor %}
-    </p>
+    <!--<p>-->
+    <!--    Searched on: {{all_checked}}-->
+    <!--</p>-->
+    <!--<p></p>-->
+    <!--<p>-->
+    <!--    {% for recept in recepten %}-->
+    <!--    <p>-->
+    <!--        <p>Recipe name: {{ recept["recipeName"] }}</p>-->
+    <!--        <p> <img src="{{ recept['imageUrlsBySize']['90'] }}"> </p>-->
+    <!--        <p>Suitable courses: {{ recept["attributes"]["course"] }}</p>-->
+    <!--        <p>Ingredients: {{ recept["ingredients"] }}</p>-->
+    <!--        <p>.</p>-->
+    <!--    </p>-->
+    <!--    {% endfor %}-->
+    <!--</p>-->
 
 
 {% endblock %}
