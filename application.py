@@ -32,11 +32,33 @@ Session(app)
 # configure CS50 Library to use SQLite database
 db = SQL("sqlite:///recepts.db")
 
+
+
+# t = requests.get("http://api.yummly.com/v1/api/recipes?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e")
+# x = json.loads(t.text)
+# print(x)
+# for i in x['matches']:
+#     url = i['imageUrlsBySize']['90']
+#     recipe = i['recipeName']
+#     result = db.execute("INSERT INTO likes (username, recipe, url) VALUES(:username, :recipe , :url)",
+#                             username= "ruben", recipe = recipe, url = url)
+
+
+
+
 @app.route("/")
 @app.route("/index")
 def index():
 
-    return render_template("index.html")
+    results = db.execute("SELECT recipe, url, count(recipe) AS total FROM likes GROUP BY recipe ORDER BY total DESC ")
+    print (results)
+
+#     SELECT product_id, count(*) AS total
+# FROM order_line
+# GROUP BY product_id
+# ORDER BY total
+
+    return render_template("index.html", results = results)
 
 
 @app.route("/login", methods=["GET", "POST"])

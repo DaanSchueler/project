@@ -13,36 +13,46 @@
     <p>The .caption class adds proper padding and a dark grey color to text inside thumbnails.</p>
     <p>Click on the images to enlarge them.</p>
     <div class="row">
+      {% for i in range(3) %}
       <div class="col-md-4">
         <div class="thumbnail">
-          <a href="https://www.w3schools.com/w3images/lights.jpg" target="_blank">
-            <img src="https://www.w3schools.com/w3images/lights.jpg" alt="Lights" style="width:100%">
+          <a href="{{results[i].url}}" target="_blank">
+            <img src="{{results[i].url}}" alt="Lights" style="width:100%">
             <div class="caption">
-              <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+              <p>{{results[i].recipe}}</p>
             </div>
           </a>
         </div>
       </div>
+       {% endfor %}
+    </div>
+    <div class="row">
+      {% for i in range(3, 6) %}
       <div class="col-md-4">
         <div class="thumbnail">
-          <a href="https://www.w3schools.com/w3images/nature.jpg" target="_blank">
-            <img src="https://www.w3schools.com/w3images/nature.jpg" alt="Nature" style="width:100%">
+          <a href="{{results[i].url}}" target="_blank">
+            <img src="{{results[i].url}}" alt="Lights" style="width:100%">
             <div class="caption">
-              <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+              <p>{{results[i].recipe}}</p>
             </div>
           </a>
         </div>
       </div>
+       {% endfor %}
+    </div>
+    <div class="row">
+      {% for i in range(6, 9) %}
       <div class="col-md-4">
         <div class="thumbnail">
-          <a href="https://www.w3schools.com/w3images/fjords.jpg" target="_blank">
-            <img src="https://www.w3schools.com/w3images/fjords.jpg" alt="Fjords" style="width:100%">
+          <a href="{{results[i].url}}" target="_blank">
+            <img src="{{results[i].url}}" alt="Lights" style="width:100%">
             <div class="caption">
-              <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+              <p>{{results[i].recipe}}</p>
             </div>
           </a>
         </div>
       </div>
+       {% endfor %}
     </div>
   </div>
 {% endblock %}
