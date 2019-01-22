@@ -34,17 +34,6 @@ db = SQL("sqlite:///recepts.db")
 
 
 
-# t = requests.get("http://api.yummly.com/v1/api/recipes?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e")
-# x = json.loads(t.text)
-# print(x)
-# for i in x['matches']:
-#     url = i['imageUrlsBySize']['90']
-#     recipe = i['recipeName']
-#     result = db.execute("INSERT INTO likes (username, recipe, url) VALUES(:username, :recipe , :url)",
-#                             username= "ruben", recipe = recipe, url = url)
-
-
-
 
 @app.route("/")
 @app.route("/index")
@@ -259,3 +248,23 @@ def account():
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("account.html")
+
+
+
+
+# import pprint as pp
+
+# t = requests.get("http://api.yummly.com/v1/api/recipes?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e")
+# x = json.loads(t.text)
+# for i in x['matches']:
+#     id = i['id']
+#     print(id)
+
+#     t = requests.get("http://api.yummly.com/v1/api/recipe/{}?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e".format(id))
+#     y = json.loads(t.text)
+#     pp.pprint(y)
+
+#     # url = i['imageUrlsBySize']['90']
+#     # recipe = i['recipeName']
+#     # result = db.execute("INSERT INTO likes (username, recipe, url) VALUES(:username, :recipe , :url)",
+#     #                         username= "ruben", recipe = recipe, url = url)
