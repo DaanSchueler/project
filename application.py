@@ -33,13 +33,30 @@ Session(app)
 db = SQL("sqlite:///recepts.db")
 
 
+import pprint as pp
+
+# t = requests.get("http://api.yummly.com/v1/api/recipes?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e")
+# x = json.loads(t.text)
+# for i in x['matches']:
+#     recipe_id = i['id']
+#     recipe_name = i['recipeName']
+    
+
+#     s = requests.get("http://api.yummly.com/v1/api/recipe/{}?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e".format(recipe_id))
+#     y = json.loads(s.text)
+#     recipe_image = y['images'][0]['imageUrlsBySize']['360']
+
+#     result = db.execute("INSERT INTO likes (username, recipe_id, recipe_name, recipe_image) VALUES(:username, :id, :name, :image)",
+#                             username= "ruben", id = recipe_id, name = recipe_name, image = recipe_image)
+
+
 
 
 @app.route("/")
 @app.route("/index")
 def index():
 
-    results = db.execute("SELECT recipe, url, count(recipe) AS total FROM likes GROUP BY recipe ORDER BY total DESC ")
+    results = db.execute("SELECT recipe_name, recipe_image, count(recipe_name) AS total FROM likes GROUP BY recipe_name ORDER BY total DESC ")
     print (results)
 
 #     SELECT product_id, count(*) AS total
@@ -252,19 +269,3 @@ def account():
 
 
 
-# import pprint as pp
-
-# t = requests.get("http://api.yummly.com/v1/api/recipes?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e")
-# x = json.loads(t.text)
-# for i in x['matches']:
-#     id = i['id']
-#     print(id)
-
-#     t = requests.get("http://api.yummly.com/v1/api/recipe/{}?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e".format(id))
-#     y = json.loads(t.text)
-#     pp.pprint(y)
-
-#     # url = i['imageUrlsBySize']['90']
-#     # recipe = i['recipeName']
-#     # result = db.execute("INSERT INTO likes (username, recipe, url) VALUES(:username, :recipe , :url)",
-#     #                         username= "ruben", recipe = recipe, url = url)
