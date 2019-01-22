@@ -33,6 +33,7 @@ Session(app)
 db = SQL("sqlite:///recepts.db")
 
 
+
 import pprint as pp
 
 # t = requests.get("http://api.yummly.com/v1/api/recipes?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e")
@@ -40,7 +41,7 @@ import pprint as pp
 # for i in x['matches']:
 #     recipe_id = i['id']
 #     recipe_name = i['recipeName']
-    
+
 
 #     s = requests.get("http://api.yummly.com/v1/api/recipe/{}?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e".format(recipe_id))
 #     y = json.loads(s.text)
@@ -52,12 +53,15 @@ import pprint as pp
 
 
 
+
+
+
 @app.route("/")
 @app.route("/index")
 def index():
 
-    results = db.execute("SELECT recipe_name, recipe_image, count(recipe_name) AS total FROM likes GROUP BY recipe_name ORDER BY total DESC ")
-    print (results)
+    results = db.execute("SELECT recipe_id, recipe_name, recipe_image, count(recipe_name) AS total FROM likes GROUP BY recipe_name ORDER BY total DESC ")
+    # print (results)
 
 #     SELECT product_id, count(*) AS total
 # FROM order_line
@@ -216,10 +220,6 @@ def moreinfo():
 
 
 
-
-
-
-
 @app.route("/account", methods=["GET", "POST"])
 def account():
     """Log user in."""
@@ -265,7 +265,3 @@ def account():
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("account.html")
-
-
-
-
