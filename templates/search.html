@@ -26,22 +26,18 @@
 </nav>
 <form action="{{ url_for('search') }}" method="post">
 <h1>Allergy-Friendly Recipe Search</h1>
-<p1>ALLERGIES</p1>
 <div class="row">
   <div class="column">
-	<label class="container">Peanut-free
-  <input type="checkbox" checked="checked">
-  <span class="checkmark"></span>
-
-  <br><label class="container">Peanut-free
-  <input type="checkbox"></br>
-  <span class="checkmark"></span>
-
-  <label class="container">Seafood-free
+  <h2>Allergies</h2>
+  <label class="container">Peanut-free
   <input type="checkbox">
   <span class="checkmark"></span>
 
-  <br><label class="container">Sesame-free
+  <br><label class="container">Seafood-free
+  <input type="checkbox">
+  <span class="checkmark"></span></br>
+
+  <label class="container">Sesame-free
   <input type="checkbox">
   <span class="checkmark"></span>
 
@@ -76,9 +72,11 @@
 </label>
   </br>
 
-<p2>DIETS</p2>
+</div>
+  <div class="column">
+    <h2>Diets</h2>
 
-<label class="container">Ketogenic
+   <label class="container">Ketogenic
   <input type="checkbox">
   <span class="checkmark"></span>
 </label>
@@ -118,10 +116,9 @@
   <span class="checkmark"></span>
 </label>
   </div>
-
-<p3>COURSE</p3>
-
-<label class="container">Main dishes
+  <div class="column">
+    <h2>...</h2>
+    <label class="container">Main dishes
   <input type="checkbox">
   <span class="checkmark"></span>
 </label>
@@ -181,6 +178,7 @@
   <span class="checkmark"></span>
 </label>
   </div>
+</div>
 
 <div class="form-group">
     <button class="button button1" type="submit">Submit</button>
