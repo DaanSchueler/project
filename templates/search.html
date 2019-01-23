@@ -1,191 +1,150 @@
-<head>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+{% extends "layout.html" %}
 
-<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% block title %}
+   test
+{% endblock %}
 
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+{% block main %}
+    <form action="{{ url_for('search') }}" method="post">
+        <fieldset>
+        <p>ALLERGIES</p>
+        <div class="checkbox">
+          <label><input type="checkbox" name="Gluten-free" value="393^Gluten-Free">Gluten-Free</label>
+        </div>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>Allergy Recepies: {% block title %}{% endblock %}</title>
+        <div class="checkbox">
+          <label><input type="checkbox" name= "Peanut-free" value="394^Peanut-Free">Peanut-Free</label>
+        </div>
 
+        <div class="checkbox">
+          <label><input type="checkbox" name="Seafood-free" value="398^Seafood-Free">Seafood-Free</label>
+        </div>
 
-</head>
-<body>
-  <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                 <a class="navbar-brand" href="{{ url_for('index') }}"><span class="green">Allergy</span> <span class="red">Recipes</span></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
-      <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
-  </div>
-</nav>
-<form action="{{ url_for('search') }}" method="post">
-<h1>Allergy-Friendly Recipe Search</h1>
-<p1>ALLERGIES</p1>
-<label class="container">Gluten-free
-  <input type="checkbox" checked="checked">
-  <span class="checkmark"></span>
-</label>
+        <div class="checkbox">
+          <label><input type="checkbox" name="Sesame-free" value="399^Sesame-Free">Sesame-Free</label>
+        </div>
 
-<label class="container">Peanut-free
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+        <div class="checkbox">
+          <label><input type="checkbox" name="Soy-free" value="400^Soy-Free">Soy-Free</label>
+        </div>
 
-<label class="container">Seafood-free
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+        <div class="checkbox">
+          <label><input type="checkbox" name="Dairy-free" value="396^Dairy-Free">Dairy-Free</label>
+        </div>
 
-<label class="container">Sesame-free
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+        <div class="checkbox">
+              <label><input type="checkbox" name="Egg-free" value="397^Egg-Free">Egg-Free</label>
+        </div>
 
-<label class="container">Soy-free
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+         <div class="checkbox">
+              <label><input type="checkbox" name="Sulfite-free" value="401^Sulfite-Free">Sulfite-Free</label>
+        </div>
 
-<label class="container">Dairy-free
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+         <div class="checkbox">
+              <label><input type="checkbox" name="Wheat-free" value="392^Wheat-Free">Wheat-Free</label>
+        </div>
 
-<label class="container">Egg-free
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+        <div class="checkbox">
+              <label><input type="checkbox" name="Tree nut-free" value="395^Tree Nut-Free">Tree Nut-Free</label>
+        </div>
+        </fieldset>
+        <fieldset>
+        <p>DIETS</p>
+         <div class="checkbox">
+              <label><input type="checkbox" name="Ketogenic" value="406^Ketogenic">Ketogenic</label>
+        </div>
 
-<label class="container">Sulfite-free
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+         <div class="checkbox">
+              <label><input type="checkbox" name="Lacto vegetarian" value="388^Lacto vegetarian">Lacto vegetarian</label>
+        </div>
 
-<label class="container">Wheat-free
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+        <div class="checkbox">
+              <label><input type="checkbox" name="Ovo vegetarian" value="389^Ovo vegetarian">Ovo vegetarian</label>
+        </div>
 
-<label class="container">Treenut-free
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+        <div class="checkbox">
+              <label><input type="checkbox" name="Pescetarian" value="390^Pescetarian">Pescetarian</label>
+        </div>
 
-<p2>DIETS</p2>
+         <div class="checkbox">
+              <label><input type="checkbox" name="Vegan" value="386^Vegan">Vegan</label>
+        </div>
 
-<label class="container">Ketogenic
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+         <div class="checkbox">
+              <label><input type="checkbox" name="Low FODMAP" value="408^Low FODMAP">Low FODMAP</label>
+        </div>
 
-<label class="container">Lacto vegetarian
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+        <div class="checkbox">
+              <label><input type="checkbox" name="Lacto-ovo vegetarian" value="387^Lacto-ovo vegetarian">Lacto-ovo vegetarian</label>
+        </div>
 
-<label class="container">Ovo vegetarian
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+        <div class="checkbox">
+              <label><input type="checkbox" name="Paleo" value="403^Paleo">Paleo</label>
+        </div>
+        </fieldset>
 
-<label class="container">Pescetarian
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+        <fieldset>
+        <p>COURSE</p>
+         <div class="checkbox">
+              <label><input type="checkbox" name="Main Dishes" value="course^course-Main Dishes">Main Dishes</label>
+        </div>
 
-<label class="container">Vegan
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+         <div class="checkbox">
+              <label><input type="checkbox" name="Desserts" value="course^course-Desserts">Desserts</label>
+        </div>
 
-<label class="container">Low FODMAP
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+        <div class="checkbox">
+              <label><input type="checkbox" name="Side Dishes" value="course^course-Side Dishes">Side Dishes</label>
+        </div>
 
-<label class="container">Lacto-ovo vegetarian
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+        <div class="checkbox">
+              <label><input type="checkbox" name="Appetizers" value="course^course-Appetizers">Appetizers</label>
+        </div>
 
-<label class="container">Paleo
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+         <div class="checkbox">
+              <label><input type="checkbox" name="Salads" value="course^course-Salads">Salads</label>
+        </div>
 
-<p3>COURSE</p3>
+         <div class="checkbox">
+              <label><input type="checkbox" name="Breakfast and Brunch" value="course^course-Breakfast and Brunch"> Breakfast and Brunch</label>
+        </div>
 
-<label class="container">Main dishes
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+        <div class="checkbox">
+              <label><input type="checkbox" name="Breads" value="course^course-Breads">Breads</label>
+        </div>
 
-<label class="container">Side dishes
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+        <div class="checkbox">
+              <label><input type="checkbox" name="Soups" value="course^course-Soups">Soups</label>
+        </div>
 
-<label class="container">Appetizers
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+        <div class="checkbox">
+              <label><input type="checkbox" name="Beverages" value="course^course-Beverages">Beverages</label>
+        </div>
 
-<label class="container">Salads
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+        <div class="checkbox">
+              <label><input type="checkbox" name="Condiments and Sauces" value="course^course-Condiments and Sauces">Condiments and Sauces</label>
+        </div>
 
-<label class="container">Breakfast and Brunch
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+        <div class="checkbox">
+              <label><input type="checkbox" name="Cocktails" value="course^course-Cocktails">Cocktails</label>
+        </div>
 
-<label class="container">Breads
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+        <div class="checkbox">
+              <label><input type="checkbox" name="Snacks" value="course^course-Snacks">Snacks</label>
+        </div>
 
-<label class="container">Soups
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
-
-<label class="container">Beverages
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
-
-<label class="container">Condiments and Sauces
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
-
-<label class="container">Cocktails
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
-
-<label class="container">Snacks
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
-
-<label class="container">Lunch
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
-
-<div class="form-group">
-    <button class="button button1" type="submit">Submit</button>
-</div>
-</form>
-</body>
+        <div class="checkbox">
+              <label><input type="checkbox" name="Lunch" value="course^course-Lunch">Lunch</label>
+        </div>
+        </fieldset>
 
 
 
+
+         <div class="form-group">
+            <button class="btn btn-default" type="submit">Submit</button>
+        </div>
+
+        </form>
+
+{% endblock %}
