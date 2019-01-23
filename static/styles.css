@@ -152,10 +152,6 @@
   background-color: #eee;
 }
 
-/* Als je over het checkbox vakje gaat hoveren, maak het grijs */
-.container:hover input ~ .checkmark {
-  background-color: #c2c2c2;
-}
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
