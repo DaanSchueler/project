@@ -22,7 +22,13 @@
 			</div>
 
 			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-				<h3><a href="/moreinfo" title="">{{ recept["recipeName"] }}</a></h3>
+
+				<h3><a href="{{ url_for('moreinfo') }}?id= {{ recept["id"] }}" title="">{{ recept["recipeName"] }}</a></h3>
+
+				<div class="form-group">
+                <input type="hidden" name="id" value="{{ recept["id"] }}"/>
+            	</div>
+
 
 				<p>
 				    Suitable course:
@@ -37,6 +43,7 @@
 				    <td> &#183; {{ ingr }} </td>
 				    {% endfor %}
 				</p>
+
 
 				<p name="id"> {{ recept["attributes"]["id"] }} </p>
                 <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
