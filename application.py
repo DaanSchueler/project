@@ -52,10 +52,6 @@ import pprint as pp
 
 
 
-
-
-
-
 @app.route("/")
 @app.route("/index")
 def index():
@@ -265,3 +261,23 @@ def account():
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("account.html")
+
+@app.route("/test", methods=['GET','POST'])
+def test():
+    if request.method == "POST":
+        print("HELP")
+        recipe_id = request.get_json()
+        recipe_id = recipe_id['fired_button']
+        if recipe_id:
+            print("Still going strong")
+        print(recipe_id)
+        s = requests.get("http://api.yummly.com/v1/api/recipe/{}?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e".format(recipe_id))
+        y = json.loads(s.text)
+        recipe_image = y['images'][0]['imageUrlsBySize']['360']
+        recipe_name = y['name']
+        result = db.execute("INSERT INTO likes (username, recipe_id, recipe_name, recipe_image) VALUES(:username, :id, :name, :image)",
+                                username= "ruben", id = recipe_id, name = recipe_name, image = recipe_image)
+        return render_template("test.html")
+   
+
+
