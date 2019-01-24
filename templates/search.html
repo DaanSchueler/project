@@ -12,70 +12,66 @@
 
 </head>
 <body>
-  <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                 <a class="navbar-brand" href="{{ url_for('index') }}"><span class="green">Allergy</span> <span class="red">Recipes</span></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
-      <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
+<div class="container1">
+      <ul>
+  <li><a href="{{ url_for('index') }}">Home</a></li>
+  <li><a class="{{ url_for('register') }}">Register</a></li>
+  <li><a href="{{ url_for('login') }}">Login</a></li>
+  <li><a class="active"="{{ url_for('search') }}">Search</a></li>
+
+</ul>
   </div>
-</nav>
 <form action="{{ url_for('search') }}" method="post">
 <h1>Allergy-Friendly Recipe Search</h1>
 <div class="row">
   <div class="column">
   <h2>Allergies</h2>
-  <label class="container">Gluten-free
+  <label class="container1">Gluten-free
   <input type="checkbox" name="Gluten-free" value="393^Gluten-Free">
   <span class="checkmark"></span>
   </label>
 
-  <label class="container">Peanut-free
+  <label class="container1">Peanut-free
   <input type="checkbox" name= "Peanut-free" value="394^Peanut-Free">
   <span class="checkmark"></span>
   </label>
 
-  <label class="container">Seafood-free
+  <label class="container1">Seafood-free
   <input type="checkbox" name="Seafood-free" value="398^Seafood-Free">
   <span class="checkmark"></span>
   </label>
 
-  <label class="container">Sesame-free
+  <label class="container1">Sesame-free
   <input type="checkbox" name="Sesame-free" value="399^Sesame-Free">
   <span class="checkmark"></span>
   </label>
 
-  <label class="container">Soy-free
+  <label class="container1">Soy-free
   <input type="checkbox" name="Soy-free" value="400^Soy-Free">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Dairy-free
+<label class="container1">Dairy-free
   <input type="checkbox" name="Dairy-free" value="396^Dairy-Free">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Egg-free
+<label class="container1">Egg-free
   <input type="checkbox" name="Egg-free" value="397^Egg-Free">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Sulfite-free
+<label class="container1">Sulfite-free
   <input type="checkbox" name="Sulfite-free" value="401^Sulfite-Free">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Wheat-free
+<label class="container1">Wheat-free
   <input type="checkbox" name="Wheat-free" value="392^Wheat-Free">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Treenut-free
+<label class="container1">Treenut-free
   <input type="checkbox" name="Tree nut-free" value="395^Tree Nut-Free">
   <span class="checkmark"></span>
 </label>
@@ -84,109 +80,109 @@
   <div class="column">
     <h2>Course</h2>
 
-   <label class="container">Ketogenic
+   <label class="container1">Ketogenic
   <input type="checkbox" name="Ketogenic" value="406^Ketogenic">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Lacto vegetarian
+<label class="container1">Lacto vegetarian
   <input type="checkbox" name="Lacto vegetarian" value="388^Lacto vegetarian">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Ovo vegetarian
+<label class="container1">Ovo vegetarian
   <input type="checkbox" name="Ovo vegetarian" value="389^Ovo vegetarian">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Pescetarian
+<label class="container1">Pescetarian
   <input type="checkbox" name="Pescetarian" value="390^Pescetarian">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Vegan
+<label class="container1">Vegan
   <input type="checkbox" name="Vegan" value="386^Vegan">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Low FODMAP
+<label class="container1">Low FODMAP
   <input type="checkbox" name="Low FODMAP" value="408^Low FODMAP">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Lacto-ovo vegetarian
+<label class="container1">Lacto-ovo vegetarian
   <input type="checkbox" name="Lacto-ovo vegetarian" value="387^Lacto-ovo vegetarian">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Paleo
+<label class="container1">Paleo
   <input type="checkbox" name="Paleo" value="403^Paleo">
   <span class="checkmark"></span>
 </label>
   </div>
   <div class="column">
     <h2>Diet</h2>
-    <label class="container">Main dishes
+    <label class="container1">Main dishes
   <input type="checkbox" name="Main Dishes" value="course^course-Main Dishes">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Side dishes
+<label class="container1">Side dishes
   <input type="checkbox">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Desserts
+<label class="container1">Desserts
   <input type="checkbox" name="Desserts" value="course^course-Desserts">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Appetizers
+<label class="container1">Appetizers
   <input type="checkbox" name="Appetizers" value="course^course-Appetizers">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Salads
+<label class="container1">Salads
   <input type="checkbox" name="Salads" value="course^course-Salads">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Breakfast and Brunch
+<label class="container1">Breakfast and Brunch
   <input type="checkbox" name="Breakfast and Brunch" value="course^course-Breakfast and Brunch">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Breads
+<label class="container1">Breads
   <input type="checkbox" name="Breads" value="course^course-Breads">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Soups
+<label class="container1">Soups
   <input type="checkbox" name="Soups" value="course^course-Soups">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Beverages
+<label class="container1">Beverages
   <input type="checkbox" name="Beverages" value="course^course-Beverages">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Condiments and Sauces
+<label class="container1">Condiments and Sauces
   <input type="checkbox" name="Condiments and Sauces" value="course^course-Condiments and Sauces">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Cocktails
+<label class="container1">Cocktails
   <input type="checkbox" name="Cocktails" value="course^course-Cocktails">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Snacks
+<label class="container1">Snacks
   <input type="checkbox" name="Snacks" value="course^course-Snacks">
   <span class="checkmark"></span>
 </label>
 
-<label class="container">Lunch
+<label class="container1">Lunch
   <input type="checkbox" name="Lunch" value="course^course-Lunch">
   <span class="checkmark"></span>
 </label>
