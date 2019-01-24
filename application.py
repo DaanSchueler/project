@@ -200,7 +200,6 @@ def search():
 
         recepten = x["matches"]
 
-        pp.pprint(recepten)
 
         return render_template("results.html", recepten=recepten, all_checked=all_checked)
 
@@ -209,9 +208,27 @@ def search():
 
 @app.route("/moreinfo", methods=["GET", "POST"])
 def moreinfo():
-    # id = request.args["id"]
-    # print(id)
-    return render_template("moreinfo.html")
+    recipe_id = request.args.get('id')
+    recipe_id = recipe_id[1:]
+    print(recipe_id)
+
+    q = requests.get("http://api.yummly.com/v1/api/recipe/{}?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e".format(recipe_id))
+
+    u = json.loads(q.text)
+
+    pp.pprint(u)
+
+    image = u['images'][0]['imageUrlsBySize']['360']
+    flavors = u["flavors"]
+    ingredients = u["ingredientLines"]
+    servings = u["numberOfServings"]
+    kcal = u["nutritionEstimates"][14]["value"]
+    prot_grams = u["nutritionEstimates"][25]["value"]
+    totaltime = u["totalTime"]
+    source = u["source"]["sourceRecipeUrl"]
+    name = u["name"]
+
+    return render_template("moreinfo.html", image=image, name=name, flavors=flavors, ingredients=ingredients, servings=servings, kcal=kcal, prot_grams=prot_grams, totaltime=totaltime, source=source)
 
 
 
