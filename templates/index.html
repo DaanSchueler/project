@@ -23,17 +23,26 @@
             </div>
           </a>
         </div>
+<<<<<<< HEAD
         <div id = "like">
           <button name="like" class="button" type="submit" value="{{results[i].recipe_id}}" >Like</button>
         </div>
+=======
+        <div id = 'like'>
+
+          <button name="like" class="button" type="submit" value="{{results[i].recipe_id}}" >Like</button>
+
+      </div>
+>>>>>>> f48182afcc268f3f658ed56d2606a3a68beb7e1d
       </div>
       {% endfor %}
     </div>
-       
-     
 
 
-    
+
+
+
+
     <div class="row">
       {% for i in range(3, 6) %}
       <div class="col-md-4">
@@ -70,7 +79,7 @@
   <script>
     $(".button").click(function(event) {
  // / 1. form get value
- // / 2. Ajax call /addtodb + data=this.value() 
+ // / 2. Ajax call /addtodb + data=this.value()
  // / 3. addtodb vraag waarde op args.get
  // / 4. database.query
 

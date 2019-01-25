@@ -7,22 +7,21 @@
 
 <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 
-<title>Allergy Recepies: {% block title %}{% endblock %}</title>
+<title>Allergy Recepies:</title>
 
 
 </head>
 <body>
-<div class="container1">
+<div class="container">
       <ul>
   <li><a href="{{ url_for('index') }}">Home</a></li>
-  <li><a class="{{ url_for('register') }}">Register</a></li>
-  <li><a href="{{ url_for('login') }}">Login</a></li>
   <li><a class="active"="{{ url_for('search') }}">Search</a></li>
-
 </ul>
   </div>
 <form action="{{ url_for('search') }}" method="post">
-<h1>Allergy-Friendly Recipe Search</h1>
+  <div class="header">
+    <h1>Allergy-Friendly Recipe Search</h1>
+  </div>
 <div class="row">
   <div class="column">
   <h2>Allergies</h2>

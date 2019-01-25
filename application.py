@@ -220,15 +220,18 @@ def moreinfo():
 
     image = u['images'][0]['imageUrlsBySize']['360']
     flavors = u["flavors"]
+    for k, v in flavors.items():
+        print(k)
+
+
     ingredients = u["ingredientLines"]
     servings = u["numberOfServings"]
-    kcal = u["nutritionEstimates"][14]["value"]
-    prot_grams = u["nutritionEstimates"][25]["value"]
+
     totaltime = u["totalTime"]
     source = u["source"]["sourceRecipeUrl"]
     name = u["name"]
 
-    return render_template("moreinfo.html", image=image, name=name, flavors=flavors, ingredients=ingredients, servings=servings, kcal=kcal, prot_grams=prot_grams, totaltime=totaltime, source=source)
+    return render_template("moreinfo.html", image=image, name=name, flavors=flavors, ingredients=ingredients, servings=servings, totaltime=totaltime, source=source)
 
 
 
@@ -298,6 +301,7 @@ def test():
                                 id= session["user_id"], recipe_id = recipe_id, name = recipe_name, image = recipe_image)
         return render_template("test.html")
 
+<<<<<<< HEAD
 
 
 @app.route("/unlike", methods=['GET','POST'])
@@ -315,5 +319,7 @@ def unlike():
                                 id= session["user_id"], recipe_id = recipe_id)
         return render_template("test.html")
    
+=======
+>>>>>>> f48182afcc268f3f658ed56d2606a3a68beb7e1d
 
 
