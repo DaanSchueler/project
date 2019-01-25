@@ -48,7 +48,7 @@ import pprint as pp
 #     recipe_image = y['images'][0]['imageUrlsBySize']['360']
 
 #     result = db.execute("INSERT INTO likes (id, recipe_id, recipe_name, recipe_image) VALUES(:id, :recipe_id, :name, :image)",
-#                             id = 7 , recipe_id = recipe_id, name = recipe_name, image = recipe_image)
+#                             id = 333 , recipe_id = recipe_id, name = recipe_name, image = recipe_image)
 
 
 
@@ -282,6 +282,8 @@ def account():
 @app.route("/test", methods=['GET','POST'])
 def test():
     if request.method == "POST":
+        # if not session["user_id"]:
+        #     return redirect(url_for("login"))
         print("HELP")
         recipe_id = request.get_json()
         recipe_id = recipe_id['fired_button']
@@ -294,6 +296,23 @@ def test():
         recipe_name = y['name']
         result = db.execute("INSERT INTO likes (id, recipe_id, recipe_name, recipe_image) VALUES(:id, :recipe_id, :name, :image)",
                                 id= session["user_id"], recipe_id = recipe_id, name = recipe_name, image = recipe_image)
+        return render_template("test.html")
+
+
+
+@app.route("/unlike", methods=['GET','POST'])
+def unlike():
+    if request.method == "POST":
+        # if not session["user_id"]:
+        #     return redirect(url_for("login"))
+        print("HELP")
+        recipe_id = request.get_json()
+        recipe_id = recipe_id['fired_button']
+        if recipe_id:
+            print("Still going strong")
+        print(recipe_id)
+        result = db.execute("DELETE FROM likes WHERE id = :id AND recipe_id = :recipe_id",
+                                id= session["user_id"], recipe_id = recipe_id)
         return render_template("test.html")
    
 

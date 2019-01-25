@@ -23,7 +23,9 @@
             </div>
           </a>
         </div>
+        <div id = "like">
           <button name="like" class="button" type="submit" value="{{results[i].recipe_id}}" >Like</button>
+        </div>
       </div>
       {% endfor %}
     </div>
@@ -66,22 +68,40 @@
   </div>
 
   <script>
-    $(".button").click(function() {
+    $(".button").click(function(event) {
  // / 1. form get value
  // / 2. Ajax call /addtodb + data=this.value() 
  // / 3. addtodb vraag waarde op args.get
  // / 4. database.query
 
  var fired_button = $(this).val();
+ var endpoint = "";
+ if ($(event.target).html() == 'Like'){
+   endpoint=  "{{url_for('test')}}"
+ }
+ else{
+   endpoint = "{{url_for('unlike')}}"
+ }
  $.ajax({
- type : 'POST',
- url : "{{url_for('test')}}",
- data : JSON.stringify({fired_button}, null, '\t'),
- contentType: 'application/json;charset=UTF-8',
+  type : 'POST',
+  url : endpoint,
+  data : JSON.stringify({fired_button}, null, '\t'),
+  contentType: 'application/json;charset=UTF-8',
+  success: function() {
+      alert("success");
+      if ($(event.target).html() == 'Like'){
+        $(event.target).html("Unlike");
+    }
+    else{
+
+      $(event.target).html("Like");
+    }
+ }
 //  success:function(response){document.write(response);}
- 
+
 
  });
+// var test = document.getElementById("myDIV").className = "mystyle"; 
 window.alert(fired_button);
 })
   </script>
