@@ -24,34 +24,21 @@
           </a>
         </div>
         <div id = 'like'>
-        <form action="">
-          <button name="like" type="submit" value="{{results[i].recipe_id}}" >Like</button>
-        </form> 
+
+          <button name="like" class="button" type="submit" value="{{results[i].recipe_id}}" >Like</button>
+
       </div>
+          <button name="like" class="button" type="submit" value="{{results[i].recipe_id}}" >Like</button>
       </div>
+      {% endfor %}
+    </div>
        {% endfor %}
 
-       <script>
-        $("button").click(function() {
-          var fired_button = $(this).val();
-          alert(fired_button);
-          var xhttp;    
-          xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-              document.getElementById("like").innerHTML = this.responseText;
-            }
-          };
-          xhttp.open("GET", "query.py?q="+fired_button, true);
-          xhttp.send();
-        }
-
-      
-          
-        </script>
 
 
-    </div>
+
+
+
     <div class="row">
       {% for i in range(3, 6) %}
       <div class="col-md-4">
@@ -63,9 +50,11 @@
             </div>
           </a>
         </div>
+        <button name="like" class="button" type="submit" value="{{results[i].recipe_id}}" >Like</button>
       </div>
        {% endfor %}
     </div>
+
     <div class="row">
       {% for i in range(6, 9) %}
       <div class="col-md-4">
@@ -77,8 +66,33 @@
             </div>
           </a>
         </div>
+        <button name="like" class="button" type="submit" value="{{results[i].recipe_id}}" >Like</button>
       </div>
        {% endfor %}
     </div>
   </div>
+
+  <script>
+    $(".button").click(function() {
+ // / 1. form get value
+ // / 2. Ajax call /addtodb + data=this.value()
+ // / 3. addtodb vraag waarde op args.get
+ // / 4. database.query
+
+ var fired_button = $(this).val();
+ $.ajax({
+ type : 'POST',
+ url : "{{url_for('test')}}",
+ data : JSON.stringify({fired_button}, null, '\t'),
+ contentType: 'application/json;charset=UTF-8',
+//  success:function(response){document.write(response);}
+
+
+ });
+window.alert(fired_button);
+})
+  </script>
+
+  <!-- <script src="static/script.js"></script> -->
+  </body>
 {% endblock %}

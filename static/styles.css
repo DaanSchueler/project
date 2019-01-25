@@ -217,6 +217,7 @@
   float: left;
   width: 33.33%;
   padding: 10px;
+  padding-left: 81px;
 }
 
 /* Clear floats after the columns */
@@ -255,3 +256,6 @@ li a.active {
   background-color: #3F52E5;
 }
 
+.header h1{
+  padding-left: 70px;
+}
