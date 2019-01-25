@@ -24,17 +24,17 @@
           </a>
         </div>
         <div id = 'like'>
-       
+
           <button name="like" class="button" type="submit" value="{{results[i].recipe_id}}" >Like</button>
-        
+
       </div>
       </div>
     </div>
        {% endfor %}
-     
 
 
-    
+
+
     <div class="row">
       {% for i in range(3, 6) %}
       <div class="col-md-4">
@@ -68,7 +68,7 @@
   <script>
     $(".button").click(function() {
  // / 1. form get value
- // / 2. Ajax call /addtodb + data=this.value() 
+ // / 2. Ajax call /addtodb + data=this.value()
  // / 3. addtodb vraag waarde op args.get
  // / 4. database.query
 
@@ -79,7 +79,7 @@
  data : JSON.stringify({fired_button}, null, '\t'),
  contentType: 'application/json;charset=UTF-8',
 //  success:function(response){document.write(response);}
- 
+
 
  });
 window.alert(fired_button);

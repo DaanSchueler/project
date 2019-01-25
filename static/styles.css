@@ -217,6 +217,7 @@
   float: left;
   width: 33.33%;
   padding: 10px;
+  padding-left: 81px;
 }
 
 /* Clear floats after the columns */
@@ -257,4 +258,8 @@ li a.active {
 
 a {
   color: white;
+}
+
+.header h1{
+  padding-left: 70px;
 }
