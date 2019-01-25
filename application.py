@@ -47,8 +47,8 @@ import pprint as pp
 #     y = json.loads(s.text)
 #     recipe_image = y['images'][0]['imageUrlsBySize']['360']
 
-#     result = db.execute("INSERT INTO likes (username, recipe_id, recipe_name, recipe_image) VALUES(:username, :id, :name, :image)",
-#                             username= "ruben", id = recipe_id, name = recipe_name, image = recipe_image)
+#     result = db.execute("INSERT INTO likes (id, recipe_id, recipe_name, recipe_image) VALUES(:id, :recipe_id, :name, :image)",
+#                             id = 7 , recipe_id = recipe_id, name = recipe_name, image = recipe_image)
 
 
 
@@ -292,8 +292,8 @@ def test():
         y = json.loads(s.text)
         recipe_image = y['images'][0]['imageUrlsBySize']['360']
         recipe_name = y['name']
-        result = db.execute("INSERT INTO likes (username, recipe_id, recipe_name, recipe_image) VALUES(:username, :id, :name, :image)",
-                                username= "ruben", id = recipe_id, name = recipe_name, image = recipe_image)
+        result = db.execute("INSERT INTO likes (id, recipe_id, recipe_name, recipe_image) VALUES(:id, :recipe_id, :name, :image)",
+                                id= session["user_id"], recipe_id = recipe_id, name = recipe_name, image = recipe_image)
         return render_template("test.html")
    
 
