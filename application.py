@@ -224,15 +224,18 @@ def moreinfo():
 
     image = u['images'][0]['imageUrlsBySize']['360']
     flavors = u["flavors"]
+    for k, v in flavors.items():
+        print(k)
+
+
     ingredients = u["ingredientLines"]
     servings = u["numberOfServings"]
-    kcal = u["nutritionEstimates"][14]["value"]
-    prot_grams = u["nutritionEstimates"][25]["value"]
+
     totaltime = u["totalTime"]
     source = u["source"]["sourceRecipeUrl"]
     name = u["name"]
 
-    return render_template("moreinfo.html", image=image, name=name, flavors=flavors, ingredients=ingredients, servings=servings, kcal=kcal, prot_grams=prot_grams, totaltime=totaltime, source=source)
+    return render_template("moreinfo.html", image=image, name=name, flavors=flavors, ingredients=ingredients, servings=servings, totaltime=totaltime, source=source)
 
 
 
