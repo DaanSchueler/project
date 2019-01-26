@@ -210,23 +210,15 @@ def search():
 def moreinfo():
     recipe_id = request.args.get('id')
     recipe_id = recipe_id[1:]
-    print(recipe_id)
 
     q = requests.get("http://api.yummly.com/v1/api/recipe/{}?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e".format(recipe_id))
 
     u = json.loads(q.text)
 
-    pp.pprint(u)
-
     image = u['images'][0]['imageUrlsBySize']['360']
     flavors = u["flavors"]
-    for k, v in flavors.items():
-        print(k)
-
-
     ingredients = u["ingredientLines"]
     servings = u["numberOfServings"]
-
     totaltime = u["totalTime"]
     source = u["source"]["sourceRecipeUrl"]
     name = u["name"]
@@ -239,9 +231,6 @@ def moreinfo():
 @app.route("/account", methods=["GET", "POST"])
 def account():
     """Log user in."""
-
-    # forget any user_id
-    session.clear()
 
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
@@ -301,7 +290,6 @@ def test():
                                 id= session["user_id"], recipe_id = recipe_id, name = recipe_name, image = recipe_image)
         return render_template("test.html")
 
-<<<<<<< HEAD
 
 
 @app.route("/unlike", methods=['GET','POST'])
@@ -318,8 +306,6 @@ def unlike():
         result = db.execute("DELETE FROM likes WHERE id = :id AND recipe_id = :recipe_id",
                                 id= session["user_id"], recipe_id = recipe_id)
         return render_template("test.html")
-   
-=======
->>>>>>> f48182afcc268f3f658ed56d2606a3a68beb7e1d
+
 
 

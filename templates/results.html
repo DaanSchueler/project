@@ -39,9 +39,8 @@
 				    {% endfor %}
 				</p>
 
+				<a href="{{ url_for('moreinfo') }}?id= {{ recept["id"] }}" title="">More info</a>
 
-				<p name="id"> {{ recept["attributes"]["id"] }} </p>
-                <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
 			</div>
 			<span class="clearfix borda"></span>
 		</article>

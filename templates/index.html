@@ -9,31 +9,23 @@
 
   <div class="container">
     <h2>Featured Recipies</h2>
-    <p>The .thumbnail class can be used to display an image gallery.</p>
-    <p>The .caption class adds proper padding and a dark grey color to text inside thumbnails.</p>
-    <p>Click on the images to enlarge them.</p>
+    <!--<p>The .thumbnail class can be used to display an image gallery.</p>-->
+    <!--<p>The .caption class adds proper padding and a dark grey color to text inside thumbnails.</p>-->
+    <!--<p>Click on the images to enlarge them.</p>-->
     <div class="row">
-      {% for i in range(3) %}
+      {% for i in range(9) %}
       <div class="col-md-4">
         <div class="thumbnail">
-          <a href="{{results[i].recipe_image}}" target="_blank">
+          <a href=" {{ url_for('moreinfo') }}?id= {{results[i].recipe_id}}">
             <img src="{{results[i].recipe_image}}" alt="Lights" style="width:100%">
             <div class="caption">
               <p>{{results[i].recipe_name}}</p>
             </div>
           </a>
         </div>
-<<<<<<< HEAD
         <div id = "like">
           <button name="like" class="button" type="submit" value="{{results[i].recipe_id}}" >Like</button>
         </div>
-=======
-        <div id = 'like'>
-
-          <button name="like" class="button" type="submit" value="{{results[i].recipe_id}}" >Like</button>
-
-      </div>
->>>>>>> f48182afcc268f3f658ed56d2606a3a68beb7e1d
       </div>
       {% endfor %}
     </div>
@@ -43,38 +35,38 @@
 
 
 
-    <div class="row">
-      {% for i in range(3, 6) %}
-      <div class="col-md-4">
-        <div class="thumbnail">
-          <a href="{{results[i].recipe_image}}" target="_blank">
-            <img src="{{results[i].recipe_image}}" alt="Lights" style="width:100%">
-            <div class="caption">
-              <p>{{results[i].recipe_name}}</p>
-            </div>
-          </a>
-        </div>
-        <button name="like" class="button" type="submit" value="{{results[i].recipe_id}}" >Like</button>
-      </div>
-       {% endfor %}
-    </div>
+  <!--  <div class="row">-->
+  <!--    {% for i in range(3, 6) %}-->
+  <!--    <div class="col-md-4">-->
+  <!--      <div class="thumbnail">-->
+  <!--        <a href="{{results[i].recipe_image}}" target="_blank">-->
+  <!--          <img src="{{results[i].recipe_image}}" alt="Lights" style="width:100%">-->
+  <!--          <div class="caption">-->
+  <!--            <p>{{results[i].recipe_name}}</p>-->
+  <!--          </div>-->
+  <!--        </a>-->
+  <!--      </div>-->
+  <!--      <button name="like" class="button" type="submit" value="{{results[i].recipe_id}}" >Like</button>-->
+  <!--    </div>-->
+  <!--     {% endfor %}-->
+  <!--  </div>-->
 
-    <div class="row">
-      {% for i in range(6, 9) %}
-      <div class="col-md-4">
-        <div class="thumbnail">
-          <a href="{{results[i].recipe_image}}" target="_blank">
-            <img src="{{results[i].recipe_image}}" alt="Lights" style="width:100%">
-            <div class="caption">
-              <p>{{results[i].recipe_name}}</p>
-            </div>
-          </a>
-        </div>
-        <button name="like" class="button" type="submit" value="{{results[i].recipe_id}}" >Like</button>
-      </div>
-       {% endfor %}
-    </div>
-  </div>
+  <!--  <div class="row">-->
+  <!--    {% for i in range(6, 9) %}-->
+  <!--    <div class="col-md-4">-->
+  <!--      <div class="thumbnail">-->
+  <!--        <a href="{{results[i].recipe_image}}" target="_blank">-->
+  <!--          <img src="{{results[i].recipe_image}}" alt="Lights" style="width:100%">-->
+  <!--          <div class="caption">-->
+  <!--            <p>{{results[i].recipe_name}}</p>-->
+  <!--          </div>-->
+  <!--        </a>-->
+  <!--      </div>-->
+  <!--      <button name="like" class="button" type="submit" value="{{results[i].recipe_id}}" >Like</button>-->
+  <!--    </div>-->
+  <!--     {% endfor %}-->
+  <!--  </div>-->
+  <!--</div>-->
 
   <script>
     $(".button").click(function(event) {
@@ -110,7 +102,7 @@
 
 
  });
-// var test = document.getElementById("myDIV").className = "mystyle"; 
+// var test = document.getElementById("myDIV").className = "mystyle";
 window.alert(fired_button);
 })
   </script>
