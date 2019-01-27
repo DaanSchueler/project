@@ -7,8 +7,7 @@ from passlib.apps import custom_app_context as pwd_context
 import requests
 import json
 import pprint as pp
-
-
+import ctypes
 from helpers import *
 
 # configure application
@@ -31,7 +30,6 @@ Session(app)
 
 # configure CS50 Library to use SQLite database
 db = SQL("sqlite:///recepts.db")
-
 
 
 
@@ -118,12 +116,14 @@ def register():
     # forget any user_id
     session.clear()
 
+    error = None
+
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
 
         # ensure username was submitted
         if not request.form.get("username"):
-            return ("must provide username")
+           return ("must provide username")
 
         # ensure password was submitted
         elif not request.form.get("password"):
@@ -158,7 +158,7 @@ def register():
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
-        return render_template("register.html")
+        return render_template("register.html", error=error)
 
 
 @app.route("/logout")
@@ -260,9 +260,9 @@ def account():
 
         # ensure old password is correct
         if not pwd_context.verify(request.form.get("password"), rows[0]["hash"]):
-            return apology("invalid username and/or password")
+            return ("invalid username and/or password")
 
-        # ensure password confirmation was submitted
+        # ensure new password is submitted
         elif not request.form.get("New password"):
             return ("must provide password")
 
@@ -273,15 +273,14 @@ def account():
         # query database for username
         rows = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
 
-        # als de gebruikersnaam al bestaat
-        if not user:
-            return ("username wrong")
+        #wachtwoord veranderen in database
+        rows = db.execute("UPDATE users SET hash = :hash WHERE id = :user_id", user_id=session["user_id"], hash=hash)
 
         # onthou dat de gebruiker ingelogd is
         session["user_id"] = user
 
         # redirect user to home page
-        return redirect(url_for("index"))
+        return redirect(url_for("account"))
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
