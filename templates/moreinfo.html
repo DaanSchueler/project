@@ -52,6 +52,13 @@
 
 	</section>
 
+	<select size="5" style="width:100px;">
+		{% for user in users %}
+			<option>{{user}}</option>
+		{% endfor %}
+		
+		   </select>
+
 	<script src="static/script.js"></script>
 	
 	{% if session.user_id %}

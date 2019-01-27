@@ -44,8 +44,8 @@ db = SQL("sqlite:///recepts.db")
 #     y = json.loads(s.text)
 #     recipe_image = y['images'][0]['imageUrlsBySize']['360']
 
-#     result = db.execute("INSERT INTO likes (id, recipe_id, recipe_name, recipe_image) VALUES(:id, :recipe_id, :name, :image)",
-#                             id = 333 , recipe_id = recipe_id, name = recipe_name, image = recipe_image)
+#     result = db.execute("INSERT INTO likes (id, username, recipe_id, recipe_name, recipe_image) VALUES(:id, :username, :recipe_id, :name, :image)",
+#                             id = 333, username = 'test' , recipe_id = recipe_id, name = recipe_name, image = recipe_image)
 
 
 
@@ -100,6 +100,7 @@ def login():
 
         # remember which user has logged in
         session["user_id"] = rows[0]["id"]
+        session["username"] = rows[0]["username"]
 
         # redirect user to home page
         return redirect(url_for("index"))
@@ -152,6 +153,7 @@ def register():
 
         # onthou dat de gebruiker ingelogd is
         session["user_id"] = user
+        session["username"] = request.form.get("username")
 
         # redirect user to home page
         return redirect(url_for("index"))
@@ -233,13 +235,15 @@ def moreinfo():
 
     check = session.get("user_id")
     likes_set = {}
+    users_set = {}
 
     if check:
         likes = db.execute("SELECT recipe_id FROM LIKES WHERE id = :id", id= session["user_id"])
-        
+        users = db.execute("SELECT username FROM LIKES WHERE recipe_id = :recipe_id", recipe_id = recipe_id)
         likes_set= {like["recipe_id"] for like in likes}
+        users_set = {user["username"] for user in users }
 
-    return render_template("moreinfo.html", image=image, name=name, flavors=flavors, ingredients=ingredients, servings=servings, totaltime=totaltime, source=source, recipe_id = recipe_id, likes = likes_set)
+    return render_template("moreinfo.html", image=image, name=name, flavors=flavors, ingredients=ingredients, servings=servings, totaltime=totaltime, source=source, recipe_id = recipe_id, likes = likes_set, users = users_set)
 
 
 
@@ -297,12 +301,13 @@ def test():
         if recipe_id:
             print("Still going strong")
         print(recipe_id)
+        print(session["username"])
         s = requests.get("http://api.yummly.com/v1/api/recipe/{}?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e".format(recipe_id))
         y = json.loads(s.text)
         recipe_image = y['images'][0]['imageUrlsBySize']['360']
         recipe_name = y['name']
-        result = db.execute("INSERT INTO likes (id, recipe_id, recipe_name, recipe_image) VALUES(:id, :recipe_id, :name, :image)",
-                                id= session["user_id"], recipe_id = recipe_id, name = recipe_name, image = recipe_image)
+        result = db.execute("INSERT INTO likes (id, username, recipe_id, recipe_name, recipe_image) VALUES(:id, :username, :recipe_id, :name, :image)",
+                                id= session["user_id"], username = session["username"], recipe_id = recipe_id, name = recipe_name, image = recipe_image)
         return render_template("test.html")
 
 
