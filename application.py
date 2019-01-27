@@ -34,7 +34,6 @@ db = SQL("sqlite:///recepts.db")
 
 
 
-import pprint as pp
 
 # t = requests.get("http://api.yummly.com/v1/api/recipes?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e")
 # x = json.loads(t.text)
@@ -57,6 +56,15 @@ import pprint as pp
 def index():
 
     results = db.execute("SELECT recipe_id, recipe_name, recipe_image, count(recipe_name) AS total FROM likes GROUP BY recipe_name ORDER BY total DESC ")
+    check = session.get("user_id")
+    likes_set = {}
+
+    if check:
+        likes = db.execute("SELECT recipe_id FROM LIKES WHERE id = :id", id= session["user_id"])
+        
+        likes_set= {like["recipe_id"] for like in likes}
+        
+
     # print (results)
 
 #     SELECT product_id, count(*) AS total
@@ -64,7 +72,7 @@ def index():
 # GROUP BY product_id
 # ORDER BY total
 
-    return render_template("index.html", results = results)
+    return render_template("index.html", results = results, likes = likes_set)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -223,7 +231,15 @@ def moreinfo():
     source = u["source"]["sourceRecipeUrl"]
     name = u["name"]
 
-    return render_template("moreinfo.html", image=image, name=name, flavors=flavors, ingredients=ingredients, servings=servings, totaltime=totaltime, source=source)
+    check = session.get("user_id")
+    likes_set = {}
+
+    if check:
+        likes = db.execute("SELECT recipe_id FROM LIKES WHERE id = :id", id= session["user_id"])
+        
+        likes_set= {like["recipe_id"] for like in likes}
+
+    return render_template("moreinfo.html", image=image, name=name, flavors=flavors, ingredients=ingredients, servings=servings, totaltime=totaltime, source=source, recipe_id = recipe_id, likes = likes_set)
 
 
 

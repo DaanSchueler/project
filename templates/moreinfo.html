@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block main %}
+
 <div class="container">
 
     <hgroup class="mb20">
@@ -36,6 +37,13 @@
 				<p>Number of servings: {{ servings }}</p>
 				<p>Total time: {{ totaltime }}</p>
 				<p> <a href="{{ source }}" title="{{ source }}" target="_blank"> Go to full recipe</a> </p>
+				<div id = "like">
+					{% if recipe_id in likes %}
+						<button name="like" class="button" type="submit" value="{{recipe_id}}" >Unlike</button>
+						{% else %}
+						<button name="like" class="button" type="submit" value="{{recipe_id}}" >Like</button>
+						{% endif %}
+					  </div>
 
 
 			</div>
@@ -43,5 +51,24 @@
 		</article>
 
 	</section>
+
+	<script src="static/script.js"></script>
+	
+	{% if session.user_id %}
+	<script>
+	  like();
+  
+	</script>
+	{% else %}
+  
+	<script>
+	  
+	cannot();
+  
+	</script>
+	{% endif %}
+
+	
+	
 
 {% endblock %}

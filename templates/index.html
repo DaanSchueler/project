@@ -24,10 +24,14 @@
           </a>
         </div>
         <div id = "like">
-          <button name="like" class="button" type="submit" value="{{results[i].recipe_id}}" >Like</button>
+          {% if results[i].recipe_id in likes %}
+            <button name="like" class="button" type="submit" value="{{results[i].recipe_id}}" >Unlike</button>
+          {% else %}
+            <button name="like" class="button" type="submit" value="{{results[i].recipe_id}}" >Like</button>
+          {% endif %}
         </div>
       </div>
-      {% endfor %}
+        {% endfor %}
     </div>
 
 
@@ -67,46 +71,21 @@
   <!--     {% endfor %}-->
   <!--  </div>-->
   <!--</div>-->
+  <script src="static/script.js"></script>
+  {% if session.user_id %}
+  <script>
+    like();
+
+  </script>
+  {% else %}
 
   <script>
-    $(".button").click(function(event) {
- // / 1. form get value
- // / 2. Ajax call /addtodb + data=this.value()
- // / 3. addtodb vraag waarde op args.get
- // / 4. database.query
+    
+  cannot();
 
- var fired_button = $(this).val();
- var endpoint = "";
- if ($(event.target).html() == 'Like'){
-   endpoint=  "{{url_for('test')}}"
- }
- else{
-   endpoint = "{{url_for('unlike')}}"
- }
- $.ajax({
-  type : 'POST',
-  url : endpoint,
-  data : JSON.stringify({fired_button}, null, '\t'),
-  contentType: 'application/json;charset=UTF-8',
-  success: function() {
-      alert("success");
-      if ($(event.target).html() == 'Like'){
-        $(event.target).html("Unlike");
-    }
-    else{
-
-      $(event.target).html("Like");
-    }
- }
-//  success:function(response){document.write(response);}
-
-
- });
-// var test = document.getElementById("myDIV").className = "mystyle";
-window.alert(fired_button);
-})
   </script>
+  {% endif %}
 
-  <!-- <script src="static/script.js"></script> -->
+
   </body>
 {% endblock %}
