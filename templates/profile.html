@@ -27,21 +27,21 @@
         <h2>Favorite Recipies of {user}</h2>
         <p>Click on the images to enlarge them.</p>
         <div class="row">
-          {% for i in range(5) %}
+          {% for result in results %}
           <div class="col-md-4">
             <div class="thumbnail">
-              <a href="{{results[i].recipe_image}}" target="_blank">
-                <img src="{{results[i].recipe_image}}" alt="Lights" style="width:100%">
+              <a href="{{result.recipe_image}}" target="_blank">
+                <img src="{{result.recipe_image}}" alt="Lights" style="width:100%">
                 <div class="caption">
-                  <p>{{results[i].recipe_name}}</p>
+                  <p>{{result.recipe_name}}</p>
                 </div>
               </a>
             </div>
             <div id = "like">
-          {% if results[i].recipe_id in likes %}
-            <button name="like" class="button" type="submit" value="{{results[i].recipe_id}}" >Unlike</button>
+          {% if result.recipe_id in likes %}
+            <button name="like" class="button" type="submit" value="{{result.recipe_id}}" >Unlike</button>
           {% else %}
-            <button name="like" class="button" type="submit" value="{{results[i].recipe_id}}" >Like</button>
+            <button name="like" class="button" type="submit" value="{{result.recipe_id}}" >Like</button>
           {% endif %}
         </div>
           </div>
