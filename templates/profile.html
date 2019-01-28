@@ -27,11 +27,7 @@
           {% for result in results %}
           <div class="col-md-4">
             <div class="thumbnail">
-<<<<<<< HEAD
               <a href=" {{ url_for('moreinfo') }}?id= {{result.recipe_id}}">
-=======
-                <a href=" {{ url_for('moreinfo') }}?id= {{results[i].recipe_id}}">
->>>>>>> c2fcc3d4fdcfda6ab75a9dfb966a3ac231ad2e27
                 <img src="{{result.recipe_image}}" alt="Lights" style="width:100%">
                 <div class="caption">
                   <p>{{result.recipe_name}}</p>
