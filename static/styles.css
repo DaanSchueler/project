@@ -1,3 +1,9 @@
+/*body {*/
+/* background-image: url("pexels-photo-349610.jpeg");*/
+/*}*/
+
+
+
 .register{
     background: -webkit-linear-gradient(left, #3931af, #00c6ff);
     margin-top: 3%;
@@ -126,7 +132,7 @@
   margin-bottom: 12px;
   padding-left: 35px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 14px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -183,7 +189,7 @@
   transform: rotate(45deg);
 }
 
-.button {
+.like_button {
   background-color: #4CAF50; /* Green */
   border: none;
   color: white;
@@ -201,6 +207,13 @@
   background-color: white;
   color: black;
   border: 2px solid #c2c2c2;
+  position: absolute;
+  /*padding-top: 300px;*/
+  left: 950px;
+  top: 560px;
+  width: 60px;
+  height: 30px;
+
 }
 
 .button1:hover {
@@ -215,47 +228,74 @@
 /* Create three equal columns that floats next to each other */
 .column {
   float: left;
-  width: 33.33%;
-  padding: 10px;
-  padding-left: 81px;
+  /*width: 30%;*/
+  padding-right: 10px;
+  padding-left: 90px;
+  padding-top: 0px;
 }
 
+/*.coursecolumn {*/
+/*  float: right;*/
+  /*width: 30%;*/
+/*  padding-right: 10px;*/
+/*  padding-left: 30px;*/
+/*}*/
+
+/*.allergycolumn {*/
+/*  float: left;*/
+  /*width: 30%;*/
+/*  padding-right: 10px;*/
+/*  padding-left: 30px;*/
+/*}*/
+
 /* Clear floats after the columns */
-.row:after {
+.searchrow {
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 0px;
   content: "";
   display: table;
   clear: both;
 }
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  border: 1px solid #e7e7e7;
-  background-color: #B3C3F3;
+
+/* Clear floats after the columns */
+.indexrow:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
-li {
-  float: left;
-}
+/*ul {*/
+/*  list-style-type: none;*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*  overflow: hidden;*/
+/*  border: 1px solid #e7e7e7;*/
+/*  background-color: #B3C3F3;*/
+/*}*/
 
-li a {
-  display: block;
-  color: #666;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
+/*li {*/
+/*  float: left;*/
+/*}*/
 
-li a:hover:not(.active) {
-  background-color: #E6F3F7;
-}
+/*li a {*/
+/*  display: block;*/
+/*  color: #666;*/
+/*  text-align: center;*/
+/*  padding: 14px 16px;*/
+/*  text-decoration: none;*/
+/*}*/
 
-li a.active {
-  color: white;
-  background-color: #3F52E5;
-}
+/*li a:hover:not(.active) {*/
+/*  background-color: #E6F3F7;*/
+/*}*/
+
+/*li a.active {*/
+/*  color: white;*/
+/*  background-color: #3F52E5;*/
+/*}*/
 
 .header h1{
-  padding-left: 70px;
+  padding-left: 30px;
+  padding-top: 0px;
 }
