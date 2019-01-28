@@ -39,7 +39,7 @@ function like(){
  }
  });
 
-window.alert(fired_button);
+
 })
 }
 
