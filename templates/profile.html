@@ -30,7 +30,7 @@
           {% for result in results %}
           <div class="col-md-4">
             <div class="thumbnail">
-              <a href="{{result.recipe_image}}" target="_blank">
+                <a href=" {{ url_for('moreinfo') }}?id= {{results[i].recipe_id}}">
                 <img src="{{result.recipe_image}}" alt="Lights" style="width:100%">
                 <div class="caption">
                   <p>{{result.recipe_name}}</p>
