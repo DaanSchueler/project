@@ -251,9 +251,9 @@ def moreinfo():
 @app.route("/account", methods=["GET", "POST"])
 def account():
 
-
-    results = db.execute("SELECT recipe_id, recipe_name, recipe_image, count(recipe_name) AS total FROM likes GROUP BY recipe_name ORDER BY total DESC ")
-    # print (results)
+    results = db.execute("SELECT recipe_id, recipe_name, recipe_image FROM likes WHERE id = :id GROUP BY recipe_name",
+                        id = session["user_id"] )
+    #print (results)
 
 #     SELECT product_id, count(*) AS total
 # FROM order_line
