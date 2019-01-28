@@ -14,16 +14,42 @@
 
     <body>
 
-   <div class="container">
-      <ul>
-  <li><a href="{{ url_for('index') }}">Home</a></li>
-  <li><a class="active"="{{ url_for('account') }}">My Account</a></li>
-</ul>
-  </div>
-  <div class = "my favorites">
-        <h1>My favorites</h1>
 
+    <div class="container">
+    <ul>
+    <li><a href="{{ url_for('index') }}">Home</a></li>
+    <li><a class="active"="{{ url_for('account') }}">My Account</a></li>
+    <li><a href="{{ url_for('profile') }}">Profile</a></li></ul>
     </div>
+    <div class="container">
+        <h2>Favorite Recipies</h2>
+        <p>Click on the images to enlarge them.</p>
+        <div class="row">
+          {% for i in range(3) %}
+          <div class="col-md-4">
+            <div class="thumbnail">
+              <a href="{{results[i].recipe_image}}" target="_blank">
+                <img src="{{results[i].recipe_image}}" alt="Lights" style="width:100%">
+                <div class="caption">
+                  <p>{{results[i].recipe_name}}</p>
+                </div>
+              </a>
+            </div>
+            <div id = "like">
+          {% if results[i].recipe_id in likes %}
+            <button name="like" class="like_button" type="submit" value="{{results[i].recipe_id}}" >Unlike</button>
+          {% else %}
+            <button name="like" class="like_button" type="submit" value="{{results[i].recipe_id}}" >Like</button>
+          {% endif %}
+        </div>
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+
+      </body>
+
     <div class="container register">
                     <div class="row">
                         <div class="col-md-3 register-left">

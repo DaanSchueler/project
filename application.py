@@ -33,7 +33,6 @@ db = SQL("sqlite:///recepts.db")
 
 
 
-import pprint as pp
 # t = requests.get("http://api.yummly.com/v1/api/recipes?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e")
 # x = json.loads(t.text)
 # for i in x['matches']:
@@ -45,8 +44,8 @@ import pprint as pp
 #     y = json.loads(s.text)
 #     recipe_image = y['images'][0]['imageUrlsBySize']['360']
 
-#     result = db.execute("INSERT INTO likes (id, recipe_id, recipe_name, recipe_image) VALUES(:id, :recipe_id, :name, :image)",
-#                             id = 333 , recipe_id = recipe_id, name = recipe_name, image = recipe_image)
+#     result = db.execute("INSERT INTO likes (id, username, recipe_id, recipe_name, recipe_image) VALUES(:id, :username, :recipe_id, :name, :image)",
+#                             id = 333, username = 'test' , recipe_id = recipe_id, name = recipe_name, image = recipe_image)
 
 
 
@@ -55,6 +54,15 @@ import pprint as pp
 def index():
 
     results = db.execute("SELECT recipe_id, recipe_name, recipe_image, count(recipe_name) AS total FROM likes GROUP BY recipe_name ORDER BY total DESC ")
+    check = session.get("user_id")
+    likes_set = {}
+
+    if check:
+        likes = db.execute("SELECT recipe_id FROM LIKES WHERE id = :id", id= session["user_id"])
+
+        likes_set= {like["recipe_id"] for like in likes}
+
+
     # print (results)
 
 #     SELECT product_id, count(*) AS total
@@ -62,7 +70,7 @@ def index():
 # GROUP BY product_id
 # ORDER BY total
 
-    return render_template("index.html", results = results)
+    return render_template("index.html", results = results, likes = likes_set)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -96,6 +104,7 @@ def login():
 
         # remember which user has logged in
         session["user_id"] = rows[0]["id"]
+        session["username"] = rows[0]["username"]
 
         # redirect user to home page
         return redirect(url_for("index"))
@@ -154,13 +163,14 @@ def register():
 
         # onthou dat de gebruiker ingelogd is
         session["user_id"] = user
+        session["username"] = request.form.get("username")
 
         # redirect user to home page
         return redirect(url_for("index"))
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
-        return render_template("register.html")
+        return render_template("register.html", error=error)
 
 
 @app.route("/logout")
@@ -233,14 +243,37 @@ def moreinfo():
     source = u["source"]["sourceRecipeUrl"]
     name = u["name"]
 
-    return render_template("moreinfo.html", image=image, name=name, flavors=flavors, ingredients=ingredients, servings=servings, totaltime=totaltime, source=source)
+    check = session.get("user_id")
+    likes_set = {}
+    users_set = {}
+
+    if check:
+        likes = db.execute("SELECT recipe_id FROM LIKES WHERE id = :id", id= session["user_id"])
+        users = db.execute("SELECT username FROM LIKES WHERE recipe_id = :recipe_id", recipe_id = recipe_id)
+        likes_set= {like["recipe_id"] for like in likes}
+        users_set = {user["username"] for user in users }
+
+    return render_template("moreinfo.html", image=image, name=name, flavors=flavors, ingredients=ingredients, servings=servings, totaltime=totaltime, source=source, recipe_id = recipe_id, likes = likes_set, users = users_set)
 
 
 
 
 @app.route("/account", methods=["GET", "POST"])
 def account():
-    """Log user in."""
+
+
+    results = db.execute("SELECT recipe_id, recipe_name, recipe_image, count(recipe_name) AS total FROM likes GROUP BY recipe_name ORDER BY total DESC ")
+    # print (results)
+
+#     SELECT product_id, count(*) AS total
+# FROM order_line
+# GROUP BY product_id
+# ORDER BY total
+
+    return render_template("account.html", results = results)
+
+    # forget any user_id
+    session.clear()
 
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
@@ -294,12 +327,13 @@ def test():
         if recipe_id:
             print("Still going strong")
         print(recipe_id)
+        print(session["username"])
         s = requests.get("http://api.yummly.com/v1/api/recipe/{}?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e".format(recipe_id))
         y = json.loads(s.text)
         recipe_image = y['images'][0]['imageUrlsBySize']['360']
         recipe_name = y['name']
-        result = db.execute("INSERT INTO likes (id, recipe_id, recipe_name, recipe_image) VALUES(:id, :recipe_id, :name, :image)",
-                                id= session["user_id"], recipe_id = recipe_id, name = recipe_name, image = recipe_image)
+        result = db.execute("INSERT INTO likes (id, username, recipe_id, recipe_name, recipe_image) VALUES(:id, :username, :recipe_id, :name, :image)",
+                                id= session["user_id"], username = session["username"], recipe_id = recipe_id, name = recipe_name, image = recipe_image)
         return render_template("test.html")
 
 
@@ -321,3 +355,17 @@ def unlike():
 
 
 
+@app.route("/profile", methods=["GET", "POST"])
+def profile():
+
+
+    results = db.execute("SELECT recipe_id, recipe_name, recipe_image FROM likes WHERE id = :id GROUP BY recipe_name",
+                        id = session["user_id"] )
+    print (results)
+
+#     SELECT product_id, count(*) AS total
+# FROM order_line
+# GROUP BY product_id
+# ORDER BY total
+
+    return render_template("profile.html", results = results)

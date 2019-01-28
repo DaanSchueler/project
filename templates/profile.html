@@ -1,0 +1,53 @@
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ boven head ---------->
+
+    <title>Allergy Recepies: {% block title %}{% endblock %}</title>
+
+    </head>
+
+    <body>
+
+
+
+
+   <div class="container">
+      <ul>
+          <li><a href="{{ url_for('index') }}">Home</a></li>
+          <li><a href="{{ url_for('account') }}">My Account</a></li>
+          <li><a class="active"="{{ url_for('profile') }}">Profile</a></li></ul>
+  </div>
+  <div class="container">
+        <h2>Favorite Recipies of {user}</h2>
+        <p>Click on the images to enlarge them.</p>
+        <div class="row">
+          {% for result in results %}
+          <div class="col-md-4">
+            <div class="thumbnail">
+              <a href="{{result.recipe_image}}" target="_blank">
+                <img src="{{result.recipe_image}}" alt="Lights" style="width:100%">
+                <div class="caption">
+                  <p>{{result.recipe_name}}</p>
+                </div>
+              </a>
+            </div>
+            <div id = "like">
+          {% if result.recipe_id in likes %}
+            <button name="like" class="like_button" type="submit" value="{{result.recipe_id}}" >Unlike</button>
+          {% else %}
+            <button name="like" class="like_button" type="submit" value="{{result.recipe_id}}" >Like</button>
+          {% endif %}
+        </div>
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+
+      </body>
