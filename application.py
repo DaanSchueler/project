@@ -59,9 +59,9 @@ def index():
 
     if check:
         likes = db.execute("SELECT recipe_id FROM LIKES WHERE id = :id", id= session["user_id"])
-        
+
         likes_set= {like["recipe_id"] for like in likes}
-        
+
 
     # print (results)
 
@@ -250,7 +250,20 @@ def moreinfo():
 
 @app.route("/account", methods=["GET", "POST"])
 def account():
-    """Log user in."""
+
+
+    results = db.execute("SELECT recipe_id, recipe_name, recipe_image, count(recipe_name) AS total FROM likes GROUP BY recipe_name ORDER BY total DESC ")
+    # print (results)
+
+#     SELECT product_id, count(*) AS total
+# FROM order_line
+# GROUP BY product_id
+# ORDER BY total
+
+    return render_template("account.html", results = results)
+
+    # forget any user_id
+    session.clear()
 
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
@@ -264,9 +277,9 @@ def account():
 
         # ensure old password is correct
         if not pwd_context.verify(request.form.get("password"), rows[0]["hash"]):
-            return ("invalid username and/or password")
+            return apology("invalid username and/or password")
 
-        # ensure new password is submitted
+        # ensure password confirmation was submitted
         elif not request.form.get("New password"):
             return ("must provide password")
 
@@ -277,14 +290,15 @@ def account():
         # query database for username
         rows = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
 
-        #wachtwoord veranderen in database
-        rows = db.execute("UPDATE users SET hash = :hash WHERE id = :user_id", user_id=session["user_id"], hash=hash)
+        # als de gebruikersnaam al bestaat
+        if not user:
+            return ("username wrong")
 
         # onthou dat de gebruiker ingelogd is
         session["user_id"] = user
 
         # redirect user to home page
-        return redirect(url_for("account"))
+        return redirect(url_for("index"))
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
@@ -329,3 +343,16 @@ def unlike():
 
 
 
+@app.route("/profile", methods=["GET", "POST"])
+def profile():
+
+
+    results = db.execute("SELECT recipe_id, recipe_name, recipe_image, count(recipe_name) AS total FROM likes GROUP BY recipe_name ORDER BY total DESC ")
+    # print (results)
+
+#     SELECT product_id, count(*) AS total
+# FROM order_line
+# GROUP BY product_id
+# ORDER BY total
+
+    return render_template("profile.html", results = results)
