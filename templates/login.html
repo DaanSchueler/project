@@ -21,6 +21,13 @@
   <li><a class="active"="{{ url_for('login') }}">Login</a></li>
 </ul>
   </div>
+            {% if get_flashed_messages() %}
+                <header>
+                    <div class="alert alert-info" role="alert">
+                        {{ get_flashed_messages() | join(" ") }}
+                    </div>
+                </header>
+            {% endif %}
 <div class="container register">
                 <div class="row">
                     <div class="col-md-3 register-left">

@@ -77,24 +77,29 @@ def login():
 
         # ensure username was submitted
         if not request.form.get("username"):
-            return apology("must provide username")
+            flash("Must provide username")
+            return render_template("login.html")
 
         # ensure password was submitted
         elif not request.form.get("password"):
-            return apology("must provide password")
+            flash("Must provide password")
+            return render_template("login.html")
+
 
         # query database for username
         rows = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
 
         # ensure username exists and password is correct
         if len(rows) != 1 or not pwd_context.verify(request.form.get("password"), rows[0]["hash"]):
-            return apology("invalid username and/or password")
+            flash("Invalid username and/or password")
+            return render_template("login.html")
 
         # remember which user has logged in
         session["user_id"] = rows[0]["id"]
 
         # redirect user to home page
         return redirect(url_for("index"))
+        return flash("Login success")
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
@@ -115,20 +120,24 @@ def register():
 
         # ensure username was submitted
         if not request.form.get("username"):
-           return ("must provide username")
+           flash("Must provide username")
+           return render_template("register.html")
 
         # ensure password was submitted
         elif not request.form.get("password"):
-            return ("must provide password")
+            flash("Must provide password")
+            return render_template("register.html")
 
         # ensure password confirmation was submitted
         elif not request.form.get("confirmation"):
-            return ("must provide confirmation password")
+            flash("Must provide confirmation password")
+            return render_template("register.html")
 
         # ensure confirmation password and password match
         # if not match return apology
         elif not request.form.get("password") == request.form.get("confirmation"):
-            return ("confirmation password and password must match")
+            flash("Confirmation password and password must match")
+            return render_template("register.html")
 
         # password omzetten naar hash
         password = request.form.get("password")
@@ -140,7 +149,8 @@ def register():
 
         # als de gebruikersnaam al bestaat
         if not user:
-            return ("username already exists")
+            flash("User already exists")
+            return render_template("register.html")
 
         # onthou dat de gebruiker ingelogd is
         session["user_id"] = user
@@ -150,7 +160,7 @@ def register():
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
-        return render_template("register.html", error=error)
+        return render_template("register.html")
 
 
 @app.route("/logout")
@@ -237,18 +247,18 @@ def account():
 
         # ensure old password was submitted
         if not request.form.get("Old password"):
-            return ("must provide password")
+            flash("must provide password")
 
         # query database for username
         rows = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
 
         # ensure old password is correct
         if not pwd_context.verify(request.form.get("password"), rows[0]["hash"]):
-            return ("invalid username and/or password")
+            flash("invalid username and/or password")
 
         # ensure new password is submitted
         elif not request.form.get("New password"):
-            return ("must provide password")
+            flash("must provide password")
 
         # password omzetten naar hash
         password = request.form.get("New password")
@@ -259,6 +269,9 @@ def account():
 
         #wachtwoord veranderen in database
         rows = db.execute("UPDATE users SET hash = :hash WHERE id = :user_id", user_id=session["user_id"], hash=hash)
+
+        # account verwijderen
+        # rows =("DROP [username] FROM users WHERE username = :username", username=request.form.get("username"))
 
         # onthou dat de gebruiker ingelogd is
         session["user_id"] = user
