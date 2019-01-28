@@ -27,7 +27,7 @@
           {% for i in range(3) %}
           <div class="col-md-4">
             <div class="thumbnail">
-              <a href="{{results[i].recipe_image}}" target="_blank">
+                <a href=" {{ url_for('moreinfo') }}?id= {{results[i].recipe_id}}">
                 <img src="{{results[i].recipe_image}}" alt="Lights" style="width:100%">
                 <div class="caption">
                   <p>{{results[i].recipe_name}}</p>
