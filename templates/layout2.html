@@ -51,10 +51,35 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('register') }}">Register</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('login') }}">Log in</a>
-      </li>
     </ul>
+
+  <!--login in the navigation bar-->
+   <ul class="nav navbar-nav navbar-right">
+      {% if session.get("current_user", None) == None %}
+
+              <form action="/login" method="post" class="navbar-form">
+                <div class="d-flex justify-content-end">
+                  <div class="p-2">
+                    <input type="text" name="username" placeholder="User Name" class="form-control">
+                  </div>
+
+                  <div class="p-2">
+                    <input type="password" name="password" placeholder="Password" class="form-control">
+                  </div>
+
+                <div class="p-2">
+                  <button type="submit" class="btn btn-success" align="right" >Log In</button>
+                </div>
+                </div>
+              </form>
+
+      {% else %}
+      <li>
+            <a><b>{{ session.get("current_user") }}</b></a></li>
+            <li><a href="/logout"><b><u>Logout</u></b></a>
+        </li>
+      {% endif %}
+      </ul>
     {% endif %}
   </nav>
 
@@ -73,5 +98,3 @@
     </main>
   </body>
 </html>
-
-
