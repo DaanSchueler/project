@@ -58,6 +58,12 @@
     </ul>
     {% endif %}
   </nav>
+  <div class="alert alert-info alert-dismissible fade show" role="alert" id = "alert">
+    <a href="{{url_for('login')}}" class="alert-link">Log in</a> first before you start liking!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
 
   <div class="container-fluid" style="margin-top:80px"></div>
 

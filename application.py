@@ -107,8 +107,9 @@ def login():
         session["username"] = rows[0]["username"]
 
         # redirect user to home page
+        # flash("Login success")     //is het erg nuttig????
         return redirect(url_for("index"))
-        return flash("Login success")
+        
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
@@ -231,7 +232,6 @@ def moreinfo():
 
     if request.method == "POST":
         if not request.form.get("user"):
-            print (self.request.query_string)
            #Moet nog veranderd worden
             return apology("Must provide user")
 
@@ -321,8 +321,8 @@ def account():
 
 
 
-@app.route("/test", methods=['GET','POST'])
-def test():
+@app.route("/like", methods=['GET','POST'])
+def like():
     if request.method == "POST":
         # if not session["user_id"]:
         #     return redirect(url_for("login"))
@@ -339,7 +339,7 @@ def test():
         recipe_name = y['name']
         result = db.execute("INSERT INTO likes (id, username, recipe_id, recipe_name, recipe_image) VALUES(:id, :username, :recipe_id, :name, :image)",
                                 id= session["user_id"], username = session["username"], recipe_id = recipe_id, name = recipe_name, image = recipe_image)
-        return render_template("test.html")
+        return render_template("like.html")
 
 
 
@@ -356,7 +356,7 @@ def unlike():
         print(recipe_id)
         result = db.execute("DELETE FROM likes WHERE id = :id AND recipe_id = :recipe_id",
                                 id= session["user_id"], recipe_id = recipe_id)
-        return render_template("test.html")
+        return render_template("unlike.html")
 
 
 
