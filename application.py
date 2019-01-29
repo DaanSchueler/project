@@ -316,19 +316,14 @@ def account():
         password = pwd_context.hash(password)
         print(password)
 
-        # query database for username
-        rows = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
-        print(rows)
 
         #wachtwoord veranderen in database
-        rows = db.execute("UPDATE users SET hash = :hash WHERE id = :user_id", user_id=session["user_id"], hash="test")
+        rows = db.execute("UPDATE users SET hash = :hash WHERE id = :user_id", user_id=session["user_id"], hash= password)
         print(rows)
 
         # account verwijderen
         # rows =("DROP [username] FROM users WHERE username = :username", username=request.form.get("username"))
 
-        # onthou dat de gebruiker ingelogd is
-        session["user_id"] = user
 
         # redirect user to home page
         return redirect(url_for("account"))
