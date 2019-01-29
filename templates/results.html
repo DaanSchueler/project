@@ -1,4 +1,4 @@
-{% extends "layouttest.html" %}
+{% extends "layout2.html" %}
 
 {% block title %}
     Results
@@ -6,64 +6,44 @@
 
 {% block main %}
 
-<div class="container">
+    <div class="container">
 
-    <hgroup class="mb20">
-		<h1>Search Results</h1>
-		<h2 class="lead"> Results found for the search for <strong class="text-danger">{{all_checked}}</strong></h2>
-	</hgroup>
+      <h1 class="my-4">Search results</h1>
 
-    {% for recept in recepten %}
-    <section class="col-xs-12 col-sm-6 col-md-12">
-		<article class="search-result row">
-			<div class="col-xs-12 col-sm-12 col-md-3">
+      <h2 class="lead"> Results found for the search for <strong class="text-danger">{{all_checked}}</strong></h2>
 
-				<a href="#" title="Image" class="thumbnail"><img src="{{ recept['imageUrlsBySize']['90'] }}" height="1000" width="1000" alt="Lorem ipsum" /></a>
-			</div>
 
-			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+	{% for recept in recepten %}
+      <div class="row">
+        <div class="col-md-3">
+          <a href="{{ url_for('moreinfo') }}?id= {{ recept["id"] }}">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="{{ recept['imageUrlsBySize']['90'] }}" height="300" width="300" alt="">
+          </a>
+        </div>
 
-				<h3><a href="{{ url_for('moreinfo') }}?id= {{ recept["id"] }}" title="">{{ recept["recipeName"] }}</a></h3>
+        <div class="col-md-7">
+          <h3><a href="{{ url_for('moreinfo') }}?id= {{ recept["id"] }}" title="">{{ recept["recipeName"] }}</a></h3>
 
-				<p>
-				    Suitable course:
-				    {% for item in recept["attributes"]["course"] %}
-				    <td> {{ item }} </td>
-				    {% endfor %}
-				</p>
+          <p>
+          	 Suitable course:
+			{% for item in recept["attributes"]["course"] %}
+				<td> {{ item }} </td>
+			{% endfor %}
+          </p>
+          <p>
+			Ingredients:
+			{% for ingr in recept["ingredients"] %}
+			   	<td> &#183; {{ ingr }} </td>
+			{% endfor %}
+			</p>
 
-				<p>
-				    Ingredients:
-				    {% for ingr in recept["ingredients"] %}
-				    <td> &#183; {{ ingr }} </td>
-				    {% endfor %}
-				</p>
 
-				<a href="{{ url_for('moreinfo') }}?id= {{ recept["id"] }}" title="">More info</a>
+          <a href="{{ url_for('moreinfo') }}?id= {{ recept["id"] }}" title="">More info</a>
+        </div>
+      </div>
+      <br>
 
-			</div>
-			<span class="clearfix borda"></span>
-		</article>
-
-	</section>
 	{% endfor %}
-
-
-    <!--<p>-->
-    <!--    Searched on: {{all_checked}}-->
-    <!--</p>-->
-    <!--<p></p>-->
-    <!--<p>-->
-    <!--    {% for recept in recepten %}-->
-    <!--    <p>-->
-    <!--        <p>Recipe name: {{ recept["recipeName"] }}</p>-->
-    <!--        <p> <img src="{{ recept['imageUrlsBySize']['90'] }}"> </p>-->
-    <!--        <p>Suitable courses: {{ recept["attributes"]["course"] }}</p>-->
-    <!--        <p>Ingredients: {{ recept["ingredients"] }}</p>-->
-    <!--        <p>.</p>-->
-    <!--    </p>-->
-    <!--    {% endfor %}-->
-    <!--</p>-->
-
+	</div>
 
 {% endblock %}

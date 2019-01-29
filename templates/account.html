@@ -1,26 +1,13 @@
-<head>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+{% extends "layout2.html" %}
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% block title %}
+    More info
+{% endblock %}
 
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+{% block main %}
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!------ boven head ---------->
-
-    <title>Allergy Recepies: {% block title %}{% endblock %}</title>
-
-    </head>
 
     <body>
-
-
-    <div class="container">
-    <ul>
-    <li><a href="{{ url_for('index') }}">Home</a></li>
-    <li><a class="active"="{{ url_for('account') }}">My Account</a></li>
-    <li><a href="{{ url_for('profile') }}">Profile</a></li></ul>
-    </div>
     <div class="container">
         <h2>Favorite Recipies</h2>
         <p>Click on the images to enlarge them.</p>
@@ -82,4 +69,4 @@
                                 </fieldset>
                                 </form>
                                     </body>
-
+                                    {% endblock %}

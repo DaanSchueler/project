@@ -1,4 +1,4 @@
-{% extends "layouttest.html" %}
+{% extends "layout2.html" %}
 
 {% block title %}
     More info
@@ -8,74 +8,70 @@
 
 <div class="container">
 
-    <hgroup class="mb20">
-		<h1>More information</h1>
-		<h2 class="lead"> Recipe details <strong class="text-danger"></strong></h2>
-	</hgroup>
+      <h1 class="my-4">More information</h1>
+      <div class="row">
+        <div class="col-md-3">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="{{ image }}" height="300" width="300" alt="">
+          </a>
+        </div>
 
-    <section class="col-xs-12 col-sm-6 col-md-12">
-		<article class="search-result row">
-			<div class="col-xs-12 col-sm-12 col-md-3">
+        <div class="col-md-7">
+          <h3>{{ name }}</h3>
 
-				<a href="#" title="Image" class="thumbnail"><img src="{{ image }}" alt="" /></a>
+			<p> Flavors:
+			{% for k,v in flavors.items() %}
+				&#183; {{k}}: {{v}}
+			{% endfor %}
+			</p>
+
+			<p> Ingredients:
+			{% for item in ingredients %}
+				&#183; {{ item }}
+			{% endfor %}
+			</p>
+
+			<p>Number of servings: {{ servings }}</p>
+
+			<p>Total time: {{ totaltime }}</p>
+
+			<p> <a href="{{ source }}" title="{{ source }}" target="_blank"> Go to full recipe</a> </p>
+
+			<div id = "like">
+				{% if recipe_id in likes %}
+					<button name="like" class="like_button" type="submit" value="{{recipe_id}}" >Unlike</button>
+				{% else %}
+					<button name="like" class="like_button" type="submit" value="{{recipe_id}}" >Like</button>
+				{% endif %}
 			</div>
+          </div>
+      </div>
+      <br>
+	</div>
 
-			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-				<h3><a href="" title="">{{ name }}</a></h3>
-
-				<p> Flavors:
-					{% for k,v in flavors.items() %}
-						&#183; {{k}}: {{v}}
-					{% endfor %}
-				</p>
-
-				<p>Ingredients:
-				{% for item in ingredients %}
-					&#183; {{ item }}
-				{% endfor %}
-				</p>
-				<p>Number of servings: {{ servings }}</p>
-				<p>Total time: {{ totaltime }}</p>
-				<p> <a href="{{ source }}" title="{{ source }}" target="_blank"> Go to full recipe</a> </p>
-				<div id = "like">
-					{% if recipe_id in likes %}
-						<button name="like" class="button" type="submit" value="{{recipe_id}}" >Unlike</button>
-						{% else %}
-						<button name="like" class="button" type="submit" value="{{recipe_id}}" >Like</button>
-						{% endif %}
-					  </div>
-
-
-			</div>
-			<span class="clearfix borda"></span>
-		</article>
-
-	</section>
-
-	<select size="5" style="width:100px;">
+	<select id=likedby size="5" style="width:100px;">
 		{% for user in users %}
 			<option>{{user}}</option>
 		{% endfor %}
-		
-		   </select>
+
+   </select>
 
 	<script src="static/script.js"></script>
-	
+
 	{% if session.user_id %}
 	<script>
-	  like();
-  
+	like();
+
 	</script>
 	{% else %}
-  
+
 	<script>
-	  
+
 	cannot();
-  
+
 	</script>
 	{% endif %}
 
-	
-	
+
+
 
 {% endblock %}
