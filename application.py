@@ -262,12 +262,12 @@ def moreinfo():
     check = session.get("user_id")
     likes_set = {}
     users_set = {}
-    
+
     #Als sessie bestaat (ofwel ingelogd):
     if check:
         likes = db.execute("SELECT recipe_id FROM LIKES WHERE id = :id", id= session["user_id"])
         likes_set= {like["recipe_id"] for like in likes}
-        
+
     users = db.execute("SELECT username FROM LIKES WHERE recipe_id = :recipe_id", recipe_id = recipe_id)
     users_set = {user["username"] for user in users }
 
@@ -288,38 +288,41 @@ def account():
 # GROUP BY product_id
 # ORDER BY total
 
-    return render_template("account.html", results = results)
-
-    # forget any user_id
-    session.clear()
 
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
 
         # ensure old password was submitted
         if not request.form.get("Old password"):
-            flash("must provide password")
+            flash("Must provide old password")
+            return render_template("account.html")
 
         # query database for username
-        rows = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
+        rows = db.execute("SELECT * FROM users WHERE username = :username", username = session["username"])
+        print(rows)
 
         # ensure old password is correct
-        if not pwd_context.verify(request.form.get("password"), rows[0]["hash"]):
-            flash("invalid username and/or password")
+        if not pwd_context.verify(request.form.get("Old password"), rows[0]["hash"]):
+            flash("Invalid password")
+            return render_template("account.html")
 
         # ensure new password is submitted
         elif not request.form.get("New password"):
-            flash("must provide password")
+            flash("Must provide new password")
+            return render_template("account.html")
 
         # password omzetten naar hash
         password = request.form.get("New password")
         password = pwd_context.hash(password)
+        print(password)
 
         # query database for username
         rows = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
+        print(rows)
 
         #wachtwoord veranderen in database
-        rows = db.execute("UPDATE users SET hash = :hash WHERE id = :user_id", user_id=session["user_id"], hash=hash)
+        rows = db.execute("UPDATE users SET hash = :hash WHERE id = :user_id", user_id=session["user_id"], hash="test")
+        print(rows)
 
         # account verwijderen
         # rows =("DROP [username] FROM users WHERE username = :username", username=request.form.get("username"))
@@ -332,7 +335,7 @@ def account():
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
-        return render_template("account.html")
+        return render_template("account.html", results = results)
 
 @app.route("/test", methods=['GET','POST'])
 def test():

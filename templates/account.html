@@ -19,7 +19,16 @@
     <ul>
     <li><a href="{{ url_for('index') }}">Home</a></li>
     <li><a class="active"="{{ url_for('account') }}">My Account</a></li>
+    </ul>
     </div>
+     {% if get_flashed_messages() %}
+                <header>
+                    <div class="alert alert-info" role="alert">
+                        {{ get_flashed_messages() | join(" ") }}
+                    </div>
+                </header>
+            {% endif %}
+
     <div class="container">
         <h2>Favorite Recipies</h2>
         <p>Click on the images to enlarge them.</p>
@@ -64,10 +73,10 @@
                                     <div class="row register-form">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                            <input class="form-control" name="password" placeholder="Old password" type="password"/>
+                                            <input class="form-control" name="Old password" placeholder="Old password" type="password"/>
                                             </div>
                                         <div class="form-group">
-                                            <input class="form-control" name="password" placeholder="New password" type="password"/>
+                                            <input class="form-control" name="New password" placeholder="New password" type="password"/>
                                             </div>
                                             <div class="form-group">
                                             <button class="btn btn-default" type="submit">Change password</button>
