@@ -59,7 +59,7 @@
 				</select>
             </div>
             <div class="form-group">
-                <button class="btn btn-default" type="submit">Find user</button>
+                <button class="btn btn-default" id = "find_users" type="submit">Find user</button>
             </div>
         </fieldset>
     </form>
@@ -67,20 +67,10 @@
 	<script src="static/script.js"></script>
 
 	{% if session.user_id %}
-	<script>
-	like();
-
-	</script>
+	<script>like();</script>
 	{% else %}
 
-	<script>
-
-	cannot();
-
-	</script>
+	<script>cannot();</script>
 	{% endif %}
-
-
-
 
 {% endblock %}

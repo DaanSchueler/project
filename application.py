@@ -231,6 +231,7 @@ def moreinfo():
 
     if request.method == "POST":
         if not request.form.get("user"):
+            print (self.request.query_string)
            #Moet nog veranderd worden
             return apology("Must provide user")
 
@@ -238,9 +239,9 @@ def moreinfo():
 
         results = db.execute("SELECT * FROM likes WHERE username = :username GROUP BY recipe_name",
                         username = user )
-        print (results)
+        likes_set = liked(session)
 
-        return render_template("profile.html", results = results)
+        return render_template("profile.html", results = results, likes = likes_set)
 
     recipe_id = request.args.get('id')
     recipe_id = recipe_id[1:]
@@ -259,15 +260,10 @@ def moreinfo():
 
 
     # Om like button te veranderen naar unlike indien nodig
-    check = session.get("user_id")
-    likes_set = {}
+    likes_set = liked(session)
     users_set = {}
 
     #Als sessie bestaat (ofwel ingelogd):
-    if check:
-        likes = db.execute("SELECT recipe_id FROM LIKES WHERE id = :id", id= session["user_id"])
-        likes_set= {like["recipe_id"] for like in likes}
-
     users = db.execute("SELECT username FROM LIKES WHERE recipe_id = :recipe_id", recipe_id = recipe_id)
     users_set = {user["username"] for user in users }
 
@@ -279,23 +275,13 @@ def moreinfo():
 @app.route("/account", methods=["GET", "POST"])
 def account():
 
-
-    results = db.execute("SELECT recipe_id, recipe_name, recipe_image, count(recipe_name) AS total FROM likes GROUP BY recipe_name ORDER BY total DESC ")
-    # print (results)
-
-#     SELECT product_id, count(*) AS total
-# FROM order_line
-# GROUP BY product_id
-# ORDER BY total
-
-
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
 
         # ensure old password was submitted
         if not request.form.get("Old password"):
             flash("Must provide old password")
-            return render_template("account.html")
+            return redirect(url_for("account"))
 
         # query database for username
         rows = db.execute("SELECT * FROM users WHERE username = :username", username = session["username"])
@@ -304,12 +290,12 @@ def account():
         # ensure old password is correct
         if not pwd_context.verify(request.form.get("Old password"), rows[0]["hash"]):
             flash("Invalid password")
-            return render_template("account.html")
+            return redirect(url_for("account"))
 
         # ensure new password is submitted
         elif not request.form.get("New password"):
             flash("Must provide new password")
-            return render_template("account.html")
+            return redirect(url_for("account"))
 
         # password omzetten naar hash
         password = request.form.get("New password")
@@ -326,11 +312,14 @@ def account():
 
 
         # redirect user to home page
+        flash("Password changed succesfully")
         return redirect(url_for("account"))
 
-    # else if user reached route via GET (as by clicking a link or via redirect)
-    else:
-        return render_template("account.html", results = results)
+    results = db.execute("SELECT recipe_id, recipe_name, recipe_image FROM likes WHERE id = :id GROUP BY recipe_name", id = session["user_id"])
+    likes_set = liked(session)
+    return render_template("account.html", results = results, likes = likes_set)
+
+
 
 @app.route("/test", methods=['GET','POST'])
 def test():
