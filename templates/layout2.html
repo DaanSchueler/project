@@ -58,7 +58,7 @@
       {% if session.get("current_user", None) == None %}
 
               <form action="/login" method="post" class="navbar-form">
-                <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content-sm-md-lg-xl-end">
                   <div class="p-2">
                     <input type="text" name="username" placeholder="User Name" class="form-control">
                   </div>
@@ -68,7 +68,7 @@
                   </div>
 
                 <div class="p-2">
-                  <button type="submit" class="btn btn-success" align="right" >Log In</button>
+                  <button type="submit" class="btn btn-light" align="right" >Log In</button>
                 </div>
                 </div>
               </form>
