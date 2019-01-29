@@ -228,6 +228,20 @@ def search():
 
 @app.route("/moreinfo", methods=["GET", "POST"])
 def moreinfo():
+
+    if request.method == "POST":
+        if not request.form.get("user"):
+           #Moet nog veranderd worden
+            return apology("Must provide user")
+
+        user = request.form.get("user")
+
+        results = db.execute("SELECT * FROM likes WHERE username = :username GROUP BY recipe_name",
+                        username = user )
+        print (results)
+
+        return render_template("profile.html", results = results)
+
     recipe_id = request.args.get('id')
     recipe_id = recipe_id[1:]
 
@@ -243,15 +257,19 @@ def moreinfo():
     source = u["source"]["sourceRecipeUrl"]
     name = u["name"]
 
+
+    # Om like button te veranderen naar unlike indien nodig
     check = session.get("user_id")
     likes_set = {}
     users_set = {}
-
+    
+    #Als sessie bestaat (ofwel ingelogd):
     if check:
         likes = db.execute("SELECT recipe_id FROM LIKES WHERE id = :id", id= session["user_id"])
-        users = db.execute("SELECT username FROM LIKES WHERE recipe_id = :recipe_id", recipe_id = recipe_id)
         likes_set= {like["recipe_id"] for like in likes}
-        users_set = {user["username"] for user in users }
+        
+    users = db.execute("SELECT username FROM LIKES WHERE recipe_id = :recipe_id", recipe_id = recipe_id)
+    users_set = {user["username"] for user in users }
 
     return render_template("moreinfo.html", image=image, name=name, flavors=flavors, ingredients=ingredients, servings=servings, totaltime=totaltime, source=source, recipe_id = recipe_id, likes = likes_set, users = users_set)
 
@@ -355,17 +373,17 @@ def unlike():
 
 
 
-@app.route("/profile", methods=["GET", "POST"])
-def profile():
+# @app.route("/profile", methods=["GET", "POST"])
+# def profile():
 
 
-    results = db.execute("SELECT recipe_id, recipe_name, recipe_image FROM likes WHERE id = :id GROUP BY recipe_name",
-                        id = session["user_id"] )
-    print (results)
+#     results = db.execute("SELECT recipe_id, recipe_name, recipe_image FROM likes WHERE id = :id GROUP BY recipe_name",
+#                         id = session["user_id"] )
+#     print (results)
 
-#     SELECT product_id, count(*) AS total
-# FROM order_line
-# GROUP BY product_id
-# ORDER BY total
+# #     SELECT product_id, count(*) AS total
+# # FROM order_line
+# # GROUP BY product_id
+# # ORDER BY total
 
-    return render_template("profile.html", results = results)
+#     return render_template("profile.html", results = results)

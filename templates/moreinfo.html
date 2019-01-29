@@ -39,9 +39,9 @@
 				<p> <a href="{{ source }}" title="{{ source }}" target="_blank"> Go to full recipe</a> </p>
 				<div id = "like">
 					{% if recipe_id in likes %}
-						<button name="like" class="button" type="submit" value="{{recipe_id}}" >Unlike</button>
+						<button name="like" class="like_button" type="submit" value="{{recipe_id}}" >Unlike</button>
 						{% else %}
-						<button name="like" class="button" type="submit" value="{{recipe_id}}" >Like</button>
+						<button name="like" class="like_button" type="submit" value="{{recipe_id}}" >Like</button>
 						{% endif %}
 					  </div>
 
@@ -52,12 +52,23 @@
 
 	</section>
 
-	<select size="5" style="width:100px;">
-		{% for user in users %}
-			<option>{{user}}</option>
-		{% endfor %}
-		
-		   </select>
+	<form action="{{ url_for('moreinfo') }}" method="post">
+        <fieldset>
+            <div class="form-group">
+                <select size="5" name="user">
+					{% for user in users %}
+						<option value ={{user}}> {{user}}</option>
+					{% endfor %}
+					
+				</select>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Find user</button>
+            </div>
+        </fieldset>
+    </form>
+
+	
 
 	<script src="static/script.js"></script>
 	
