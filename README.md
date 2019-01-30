@@ -81,6 +81,6 @@ Bij de file helpers staat de functie van liked, hierin wordt de liked veranderd 
 
 ## Moeilijkste delen applicatie
 
--   Een van de moeilijkste delen van de applicatie wordt het programmeren voor de zoekmachine en het filteren op basis van allergieën.
+-   Een van de moeilijkste delen van de applicatie was het programmeren voor de zoekmachine en het filteren op basis van allergieën.
 Deze is ook de belangrijkste feature van de website.
 
