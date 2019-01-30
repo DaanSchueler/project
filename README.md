@@ -1,4 +1,4 @@
-# Projectvoorstel  Webprog IK 2019 groep 22
+# Allergenius
 
 ## Samenvatting
 
