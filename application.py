@@ -31,20 +31,24 @@ Session(app)
 # configure CS50 Library to use SQLite database
 db = SQL("sqlite:///recepts.db")
 
+
 @app.route("/")
 @app.route("/index")
 def index():
 
-    results = db.execute("SELECT recipe_id, recipe_name, recipe_image, count(recipe_name) AS total FROM likes GROUP BY recipe_name ORDER BY total DESC ")
+    # select liked recipes ordered by most liked from database
+    results = db.execute(
+        "SELECT recipe_id, recipe_name, recipe_image, count(recipe_name) AS total FROM likes GROUP BY recipe_name ORDER BY total DESC ")
     check = session.get("user_id")
     likes_set = {}
 
+    # check what recipes user already liked and change button accordingly
     if check:
-        likes = db.execute("SELECT recipe_id FROM LIKES WHERE id = :id", id= session["user_id"])
+        likes = db.execute("SELECT recipe_id FROM LIKES WHERE id = :id", id=session["user_id"])
 
-        likes_set= {like["recipe_id"] for like in likes}
+        likes_set = {like["recipe_id"] for like in likes}
 
-    return render_template("index.html", results = results, likes = likes_set)
+    return render_template("index.html", results=results, likes=likes_set)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -99,8 +103,8 @@ def register():
 
         # ensure username was submitted
         if not request.form.get("username"):
-           flash("Must provide username")
-           return render_template("register.html")
+            flash("Must provide username")
+            return render_template("register.html")
 
         # ensure password was submitted
         elif not request.form.get("password"):
@@ -155,46 +159,63 @@ def logout():
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
-    """Serach by selected filter and api call """
+    """Search by selected filter and api call """
 
     if request.method == "POST":
+
+        # set filter variables
         allergy_terms = str()
         diet_terms = str()
         course_terms = str()
         all_checked = str()
 
-        all_allergies = ['Gluten-free','Peanut-free','Seafood-free','Sesame-free','Soy-free','Dairy-free','Egg-free','Sulfite-free','Wheat-free','Tree nut-free']
+        # get wich boxes are checked
+        all_allergies = ['Gluten-free', 'Peanut-free', 'Seafood-free', 'Sesame-free',
+                         'Soy-free', 'Dairy-free', 'Egg-free', 'Sulfite-free', 'Wheat-free', 'Tree nut-free']
         for checkbox in all_allergies:
             allergy = request.form.get(checkbox)
+
+            # if boxes are checked add to variable string
             if allergy:
                 all_checked += checkbox + ", "
                 allergy_terms += "&allowedAllergy[]=" + allergy
 
-        all_diets = ["Ketogenic","Lacto vegetarian","Ovo vegetarian","Pescetarian","Vegan","Low FODMAP","Lacto-ovo vegetarian","Paleo"]
+        # get wich boxes are checked
+        all_diets = ["Ketogenic", "Lacto vegetarian", "Ovo vegetarian",
+                     "Pescetarian", "Vegan", "Low FODMAP", "Lacto-ovo vegetarian", "Paleo"]
         for checkbox in all_diets:
             diet = request.form.get(checkbox)
+
+            # if boxes are checked add to variable string
             if diet:
                 all_checked += checkbox + ", "
                 diet_terms += "&allowedDiet[]=" + diet
 
-        all_courses = ["Main Dishes","Desserts","Side Dishes","Appetizers","Salads","Breakfast and Brunch","Breads","Soups","Beverages","Condiments and Sauces","Cocktails","Snacks","Lunch"]
+        # get wich boxes are checked
+        all_courses = ["Main Dishes", "Desserts", "Side Dishes", "Appetizers", "Salads", "Breakfast and Brunch",
+                       "Breads", "Soups", "Beverages", "Condiments and Sauces", "Cocktails", "Snacks", "Lunch"]
         for checkbox in all_courses:
             course = request.form.get(checkbox)
+
+            # if boxes are checked add to variable string
             if course:
                 all_checked += checkbox + ", "
                 course_terms += "&allowedCourse[]=" + course
 
+        # slice off final ", "
         all_checked = all_checked[0: -2]
 
-        t = requests.get("http://api.yummly.com/v1/api/recipes?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e&requirePictures=true" + allergy_terms + diet_terms + course_terms)
+        # API call with added variable strings
+        t = requests.get("http://api.yummly.com/v1/api/recipes?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e&requirePictures=true" +
+                         allergy_terms + diet_terms + course_terms)
         x = json.loads(t.text)
 
+        # get matches from API call
         recepten = x["matches"]
 
-        # Render the results of the search on a new page named results 
+        # Render the results of the search on a new page named results
         return render_template("results.html", recepten=recepten, all_checked=all_checked)
 
-    # if no filters selected render searc page again
     else:
         return render_template("search.html")
 
@@ -204,21 +225,27 @@ def moreinfo():
     """Renders spscific recipie"""
 
     if request.method == "POST":
+
+        # get all liked recipes from selected user from liked-by field
         user = request.form.get("user")
-        
         results = db.execute("SELECT * FROM likes WHERE username = :username GROUP BY recipe_name",
-                        username = user )
+                             username=user)
+
+        # check if in session user already liked recipe to change like button accordingly
         likes_set = liked(session)
 
-        return render_template("profile.html", results = results, likes = likes_set)
+        # render profile of selected user in liked by field
+        return render_template("profile.html", results=results, likes=likes_set)
 
+    # get recipe id from more information request and slice space in front of id
     recipe_id = request.args.get('id')
     recipe_id = recipe_id[1:]
 
+    # API call for more information by using recipe id call
     q = requests.get("http://api.yummly.com/v1/api/recipe/{}?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e".format(recipe_id))
-
     u = json.loads(q.text)
 
+    # select wanted information by reformatting API call results
     image = u['images'][0]['imageUrlsBySize']['360']
     flavors = u["flavors"]
     ingredients = u["ingredientLines"]
@@ -227,17 +254,15 @@ def moreinfo():
     source = u["source"]["sourceRecipeUrl"]
     name = u["name"]
 
-
-    # Om like button te veranderen naar unlike indien nodig
+    # Change like button to unlike button if necessary
     likes_set = liked(session)
+
+    # get all users who liked this recipe
     users_set = {}
+    users = db.execute("SELECT username FROM LIKES WHERE recipe_id = :recipe_id", recipe_id=recipe_id)
+    users_set = {user["username"] for user in users}
 
-    #Als sessie bestaat (ofwel ingelogd):
-    users = db.execute("SELECT username FROM LIKES WHERE recipe_id = :recipe_id", recipe_id = recipe_id)
-    users_set = {user["username"] for user in users }
-
-    return render_template("moreinfo.html", image=image, name=name, flavors=flavors, ingredients=ingredients, servings=servings, totaltime=totaltime, source=source, recipe_id = recipe_id, likes = likes_set, users = users_set)
-
+    return render_template("moreinfo.html", image=image, name=name, flavors=flavors, ingredients=ingredients, servings=servings, totaltime=totaltime, source=source, recipe_id=recipe_id, likes=likes_set, users=users_set)
 
 
 @app.route("/account", methods=["GET", "POST"])
@@ -253,7 +278,7 @@ def account():
             return redirect(url_for("account"))
 
         # query database for username
-        rows = db.execute("SELECT * FROM users WHERE username = :username", username = session["username"])
+        rows = db.execute("SELECT * FROM users WHERE username = :username", username=session["username"])
         print(rows)
 
         # ensure old password is correct
@@ -266,59 +291,60 @@ def account():
             flash("Must provide new password")
             return redirect(url_for("account"))
 
-        # password omzetten naar hash
+        # convert password to hash
         password = request.form.get("New password")
         password = pwd_context.hash(password)
         print(password)
 
-        #wachtwoord veranderen in database
-        rows = db.execute("UPDATE users SET hash = :hash WHERE id = :user_id", user_id=session["user_id"], hash= password)
+        # change password in database
+        rows = db.execute("UPDATE users SET hash = :hash WHERE id = :user_id", user_id=session["user_id"], hash=password)
         print(rows)
 
         # redirect user to home page
         flash("Password changed succesfully")
         return redirect(url_for("account"))
 
-    results = db.execute("SELECT recipe_id, recipe_name, recipe_image FROM likes WHERE id = :id GROUP BY recipe_name", id = session["user_id"])
+    results = db.execute(
+        "SELECT recipe_id, recipe_name, recipe_image FROM likes WHERE id = :id GROUP BY recipe_name", id=session["user_id"])
     likes_set = liked(session)
-    return render_template("account.html", results = results, likes = likes_set)
+    return render_template("account.html", results=results, likes=likes_set)
 
 
-@app.route("/like", methods=['GET','POST'])
+@app.route("/like", methods=['GET', 'POST'])
 def like():
     """Like button"""
     if request.method == "POST":
-        # if not session["user_id"]:
-        #     return redirect(url_for("login"))
-        print("HELP")
+
+        # get recipe id from like button
         recipe_id = request.get_json()
         recipe_id = recipe_id['fired_button']
-        if recipe_id:
-            print("Still going strong")
-        print(recipe_id)
-        print(session["username"])
-        s = requests.get("http://api.yummly.com/v1/api/recipe/{}?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e".format(recipe_id))
+
+        # get requered information from API call using recipe id
+        s = requests.get(
+            "http://api.yummly.com/v1/api/recipe/{}?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e".format(recipe_id))
         y = json.loads(s.text)
+
+        # select wanted information
         recipe_image = y['images'][0]['imageUrlsBySize']['360']
         recipe_name = y['name']
+
+        # insert liked recipe into database
         result = db.execute("INSERT INTO likes (id, username, recipe_id, recipe_name, recipe_image) VALUES(:id, :username, :recipe_id, :name, :image)",
-                                id= session["user_id"], username = session["username"], recipe_id = recipe_id, name = recipe_name, image = recipe_image)
+                            id=session["user_id"], username=session["username"], recipe_id=recipe_id, name=recipe_name, image=recipe_image)
         return render_template("like.html")
 
 
-@app.route("/unlike", methods=['GET','POST'])
+@app.route("/unlike", methods=['GET', 'POST'])
 def unlike():
     """Unlike button"""
 
     if request.method == "POST":
-        # if not session["user_id"]:
-        #     return redirect(url_for("login"))
-        print("HELP")
+
+        # get recipe id from unlike button
         recipe_id = request.get_json()
         recipe_id = recipe_id['fired_button']
-        if recipe_id:
-            print("Still going strong")
-        print(recipe_id)
+
+        # remove unliked recipe from database
         result = db.execute("DELETE FROM likes WHERE id = :id AND recipe_id = :recipe_id",
-                                id= session["user_id"], recipe_id = recipe_id)
+                            id=session["user_id"], recipe_id=recipe_id)
         return render_template("unlike.html")
