@@ -8,29 +8,29 @@
 
 <div class="container">
 
-      <h1 class="my-4">More information</h1>
+      <h1 class="my-2">More information</h1>
       <div class="row">
         <div class="col-md-3">
             <img class="img-fluid rounded mb-3 mb-md-0" src="{{ image }}" height="300" width="300" alt="">
-          </a>
 
-        <div id=likedby>
-			<form action="{{ url_for('moreinfo') }}" method="post">
-				<fieldset>
-					<div class="form-group">
-						<select id=likerfield size="5" name="user">
-						{% for user in users %}
-						<option value ={{user}}> {{user}}</option>
-						{% endfor %}
-						</select>
-					</div>
+			<h2 class="lead">This recipe was liked by:</2>
+	        <div id=likedby>
+				<form action="{{ url_for('moreinfo') }}" method="post">
+					<fieldset>
+						<div class="form-group">
+							<select id=likerfield size="5" name="user">
+							{% for user in users %}
+							<option value ={{user}}> {{user}}</option>
+							{% endfor %}
+							</select>
+						</div>
 
-					<div class="form-group">
-						<button class="btn btn-default" type="submit">Find user</button>
-					</div>
-				</fieldset>
-			</form>
-		</div>
+						<div class="form-group">
+							<button class="btn btn-default" type="submit">Find user</button>
+						</div>
+					</fieldset>
+				</form>
+			</div>
 
         </div>
 

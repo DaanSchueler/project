@@ -7,79 +7,73 @@
 {% block main %}
 
 
-    <body>
-            <div class="container register">
-                    <div class="row">
-                        <div class="col-md-3 register-left">
-                        </div>
-                        <div class="col-md-9 register-right">
-                            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-                            </ul>
-                            <form action="{{ url_for('account') }}" method="post">
-                                <fieldset>
+<body>
+    <div class="container register">
+        <div class="row">
+            <div class="col-md-3 register-left"></div>
+            <div class="col-md-9 register-right">
+                <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist"></ul>
+                    <form action="{{ url_for('account') }}" method="post">
+                        <fieldset>
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                    <h3 class="register-heading">My account</h3>
-                                    <div class="row register-form">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
+                                <h3 class="register-heading">My account</h3>
+                                <div class="row register-form">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
                                             <input class="form-control" name="Old password" placeholder="Old password" type="password"/>
-                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <input class="form-control" name="New password" placeholder="New password" type="password"/>
-                                            </div>
-                                            <div class="form-group">
-                                            <button class="btn btn-default" type="submit">Change password</button>
-                                            </div>
-                                            <div class="form-group">
-                                            <button class="btn btn-default" value = "delete"> Delete account</button>
                                         </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-default" type="submit">Change password</button>
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-default" value = "delete"> Delete account</button>
                                         </div>
                                     </div>
                                 </div>
                                 </div>
-                                </fieldset>
-                                </form>
-                                </div>
-                                </div>
-                                </div>
-    <div class="container">
-        <h2>Favorite Recipies</h2>
-        <p>Click on the images to enlarge them.</p>
-        <div class="row">
-          {% for result in results %}
-          <div class="col-md-4">
-            <div class="thumbnail">
-                <a href=" {{ url_for('moreinfo') }}?id= {{result.recipe_id}}">
-                <img src="{{result.recipe_image}}" alt="Lights" style="width:100%">
-                <div class="caption">
-                  <p>{{result.recipe_name}}</p>
-                </div>
-              </a>
+                            </div>
+                    </fieldset>
+                </form>
             </div>
-            <div id = "like">
-          {% if result.recipe_id in likes %}
-            <button name="like" class="like_button" type="submit" value="{{result.recipe_id}}" >Unlike</button>
-          {% else %}
-            <button name="like" class="like_button" type="submit" value="{{result.recipe_id}}" >Like</button>
-          {% endif %}
         </div>
-          </div>
-          {% endfor %}
+    </div>
+
+    <div class="container">
+        <div id="accountheader">
+            <h2>Your liked recipes:</h2>
         </div>
+        <div class="row">
+            {% for result in results %}
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <a href=" {{ url_for('moreinfo') }}?id= {{result.recipe_id}}">
+                            <img src="{{result.recipe_image}}" alt="Lights" style="width:100%">
+                            <div class="caption">
+                                <p>{{result.recipe_name}}</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div id = "like">
+                        {% if result.recipe_id in likes %}
+                            <button name="like" class="like_button" type="submit" value="{{result.recipe_id}}" >Unlike</button>
+                        {% else %}
+                            <button name="like" class="like_button" type="submit" value="{{result.recipe_id}}" >Like</button>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 
-      </div>
-      
-      {% if session.user_id %}
-      <script>like();</script>
-      {% else %}
-  
-      <script>cannot();</script>
-      {% endif %}
+    {% if session.user_id %}
+        <script>like();</script>
+    {% else %}
+        <script>cannot();</script>
+    {% endif %}
 
-    </body>
-
-   
-    
-                                    
-    {% endblock %}
+</body>
+{% endblock %}
