@@ -1,27 +1,36 @@
-# Projectvoorstel  Webprog IK 2019 groep 22
+# Applicatie Allergenius
+- Tavi 
+- Daan 
+- Ruben
+- Rishi
 
 ## Samenvatting
 
-Onze webapplicatie maakt het mogelijk om nieuwe gerechten te ontdekken met de focus op mensen met allergieën. Met deze webapplicatie wordt het voor mensen met allergieën makkelijker om nieuwe recepten te vinden die bij hun dieet passen. De webapplicatie biedt de mogelijkheid gerechten op verschillende allergieën te filteren. Daarnaast biedt de webapplicatie de mogelijkheid recepten als favoriet te markeren en deze inclusief persoonlijke ervaring aan een persoonlijke pagina toe te voegen. De webapplicatie zal de meest 'gefavoriete’ gerechten aanreiken door deze hoger op de pagina weer te geven.
+Onze webapplicatie maakt het mogelijk om nieuwe gerechten te ontdekken met de focus op mensen met allergieÃ«n. Met deze webapplicatie wordt het voor mensen met allergieÃ«n makkelijker om nieuwe recepten te vinden die bij hun dieet passen. De webapplicatie biedt de mogelijkheid gerechten op verschillende allergieÃ«n te filteren. Daarnaast biedt de webapplicatie de mogelijkheid recepten als favoriet te markeren en deze inclusief persoonlijke ervaring aan een persoonlijke pagina toe te voegen. De webapplicatie zal de meest 'gefavorieteâ€™ gerechten aanreiken door deze hoger op de pagina weer te geven.
+
+## Eindverantwoordelijken
+- HTML/CSS: Tavi
+- Databases: Ruben
+- API: Daan
+- HTML/CSS: Rishi
+
 
 ## Most Viable  product
 De features waar wij over twijfelen zijn:
 
--   Optie om ingrediënten te selecteren en op basis daarvan recepten tonen
+-   Optie om ingrediÃ«nten te selecteren en op basis daarvan recepten tonen
 
 -   Optie om recepten te selecteren op in combinatie met speciale dieet zoals: aziatisch  vegetarisch, frutarian etc.
 
 ## Features
 
--   Opzoeken van recepten gebaseerd op verschillende soorten allergieën
+-   Opzoeken van recepten gebaseerd op verschillende soorten allergieÃ«n, diets en courses. 
+
+-   Wachtwoord wijzigen account
 
 -   Recepten kunnen worden toegevoegd aan favorieten
 
 -   Als een recept wordt toegevoegd aan favorieten wordt het recept op de persoonlijke pagina geplaatst
-
--   Favorieten counter/ clickcounter te zien bij recepten
-
--   Recepten gesorteerd op meest toegevoegd aan favorieten
 
 -   Het bezoeken van andermans persoonlijke pagina
 
@@ -43,24 +52,24 @@ De features waar wij over twijfelen zijn:
 ## Concurrerende bestaande websites:
 [https://www.allergicliving.com/advanced-search/](https://www.allergicliving.com/advanced-search/)
 
--   Allergicliving heeft een uitgebreide search engine waarbij je ook kan filteren op ontbijt/avondeten en seizoenen. Wel kan je alleen één allergie kiezen per keer.
+-   Allergicliving heeft een uitgebreide search engine waarbij je ook kan filteren op ontbijt/avondeten en seizoenen. Wel kan je alleen Ã©Ã©n allergie kiezen per keer.
 
 
 [https://www.kidswithfoodallergies.org/page/recipes-diet.aspx](https://www.kidswithfoodallergies.org/page/recipes-diet.aspx)
 
--   Kidswithfoodallergies heeft een soortgelijke search engine, maar dan minder uitgebreid. Ook kan er ingesteld worden hoeveel recepten je op een pagina kan zien door middel van ‘'results per page’'.
+-   Kidswithfoodallergies heeft een soortgelijke search engine, maar dan minder uitgebreid. Ook kan er ingesteld worden hoeveel recepten je op een pagina kan zien door middel van â€˜'results per pageâ€™'.
 
 
 [https://theprettybee.com/search/](https://theprettybee.com/search/)
 
--   Theprettybee is qua vormgeving en ontwerp het meest uniek van de andere websites. Er is hier geen sprake van een ‘'box’' waarmee je de allergieën kan selecteren. Je moet klikken op een of meerdere allergieën en vervolgens verschijnen alle recepten die aan die eisen voldoen.
+-   Theprettybee is qua vormgeving en ontwerp het meest uniek van de andere websites. Er is hier geen sprake van een â€˜'boxâ€™' waarmee je de allergieÃ«n kan selecteren. Je moet klikken op een of meerdere allergieÃ«n en vervolgens verschijnen alle recepten die aan die eisen voldoen.
 
 
 [http://www.eatallergyfree.com/index.html](http://www.eatallergyfree.com/index.html)
 
--   Ook deze website lijkt op de andere websites met een klein verschil. De search engine is in twee blokken opgedeeld. Een blok waarmee je de allergieën kan selecteren en een ander blok waarbij je kan selecteren op het type recepten zoals ontbijt en dessert.
+-   Ook deze website lijkt op de andere websites met een klein verschil. De search engine is in twee blokken opgedeeld. Een blok waarmee je de allergieÃ«n kan selecteren en een ander blok waarbij je kan selecteren op het type recepten zoals ontbijt en dessert.
 
 ## Moeilijkste delen applicatie
 
--   Een van de moeilijkste delen van de applicatie wordt het programmeren voor de zoekmachine en het filteren op basis van allergieën.
+-   Een van de moeilijkste delen van de applicatie wordt het programmeren voor de zoekmachine en het filteren op basis van allergieÃ«n.
 
