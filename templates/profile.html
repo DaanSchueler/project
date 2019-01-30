@@ -34,5 +34,12 @@
 
       </div>
 
+      {% if session.user_id %}
+      <script>like();</script>
+      {% else %}
+  
+      <script> cannot(); </script>
+      {% endif %}
+
       </body>
       {% endblock %}

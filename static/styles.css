@@ -203,6 +203,7 @@
   cursor: pointer;
 }
 
+
 .button1 {
   background-color: white;
   color: black;
@@ -307,4 +308,11 @@
 
 #likerfield{
   width:165%;
+}
+
+#alert{
+display: none;
+position: fixed;
+width: 100%;
+z-index: 100;
 }

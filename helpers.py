@@ -1,8 +1,18 @@
 import csv
 import urllib.request
-
-from flask import redirect, render_template, request, session
 from functools import wraps
+from cs50 import SQL
+from flask import Flask, flash, redirect, render_template, request, session, url_for
+from flask_session import Session
+from tempfile import mkdtemp
+from passlib.apps import custom_app_context as pwd_context
+
+import requests
+import json
+import pprint as pp
+import ctypes
+
+db = SQL("sqlite:///recepts.db")
 
 
 def apology(message, code=400):
@@ -32,4 +42,16 @@ def login_required(f):
             return redirect("/login")
         return f(*args, **kwargs)
     return decorated_function
+
+def liked (sessie):
+     # Om like button te veranderen naar unlike indien nodig
+    check = sessie.get("user_id")
+    likes_set = {}
+
+    #Als sessie bestaat (ofwel ingelogd):
+    if check:
+        likes = db.execute("SELECT recipe_id FROM LIKES WHERE id = :id", id= sessie["user_id"])
+        likes_set= {like["recipe_id"] for like in likes}
+
+    return likes_set
 

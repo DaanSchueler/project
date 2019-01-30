@@ -16,7 +16,7 @@ function like(){
  var fired_button = $(this).val();
  var endpoint = "";
  if ($(event.target).html() == 'Like'){
-   endpoint=  "/test"
+   endpoint=  "/like"
  }
  else{
    endpoint = "/unlike"
@@ -28,7 +28,6 @@ function like(){
   contentType: 'application/json;charset=UTF-8',
   success: function() 
   {
-      alert("success");
       if ($(event.target).html() == 'Like'){
         $(event.target).html("Unlike");
     }
@@ -47,8 +46,7 @@ function like(){
 function cannot(){
     $(".like_button").click(function(event) {
      
-        window.alert("Login first")
-        location.href = "/login";
+    document.getElementById("alert").style.display = "block";     
        
        })
        }

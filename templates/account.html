@@ -1,13 +1,48 @@
 {% extends "layout2.html" %}
 
 {% block title %}
-    More info
+    Account
 {% endblock %}
 
 {% block main %}
 
 
     <body>
+            <div class="container register">
+                    <div class="row">
+                        <div class="col-md-3 register-left">
+                        </div>
+                        <div class="col-md-9 register-right">
+                            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                            </ul>
+                            <form action="{{ url_for('account') }}" method="post">
+                                <fieldset>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <h3 class="register-heading">My account</h3>
+                                    <div class="row register-form">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                            <input class="form-control" name="Old password" placeholder="Old password" type="password"/>
+                                            </div>
+                                        <div class="form-group">
+                                            <input class="form-control" name="New password" placeholder="New password" type="password"/>
+                                            </div>
+                                            <div class="form-group">
+                                            <button class="btn btn-default" type="submit">Change password</button>
+                                            </div>
+                                            <div class="form-group">
+                                            <button class="btn btn-default" value = "delete"> Delete account</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                </fieldset>
+                                </form>
+                                </div>
+                                </div>
+                                </div>
     <div class="container">
         <h2>Favorite Recipies</h2>
         <p>Click on the images to enlarge them.</p>
@@ -34,39 +69,17 @@
         </div>
 
       </div>
+      
+      {% if session.user_id %}
+      <script>like();</script>
+      {% else %}
+  
+      <script>cannot();</script>
+      {% endif %}
 
-      </body>
+    </body>
 
-    <div class="container register">
-                    <div class="row">
-                        <div class="col-md-3 register-left">
-                        </div>
-                        <div class="col-md-9 register-right">
-                            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-                            </ul>
-                            <form action="{{ url_for('account') }}" method="post">
-                                <fieldset>
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                    <h3 class="register-heading">My account</h3>
-                                    <div class="row register-form">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                            <input class="form-control" name="Old password" placeholder="Old password" type="password"/>
-                                            </div>
-                                        <div class="form-group">
-                                            <input class="form-control" name="New password" placeholder="New password" type="password"/>
-                                            </div>
-                                            <div class="form-group">
-                                            <button class="btn btn-default" type="submit">Change password</button>
-                                            </div>
-                                            <div class="form-group">
-                                            <button class="btn btn-default" type="submit">Delete account</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                </fieldset>
-                                </form>
-                                    </body>
-                                    {% endblock %}
+   
+    
+                                    
+    {% endblock %}
