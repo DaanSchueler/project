@@ -49,6 +49,11 @@ De features waar wij over twijfelen zijn:
 -   Bootstrap
 -   Javascript
 
+## Repository
+Bij het mapje static hebben we een javascript file staan waar alle javascript code inzit. Ook zit daar de styles file van CSS waarin alle styles in verwerkt is. 
+Bij het mapje templates hebben we alle html van de pagina's. 
+Bij de file helpers staat de functie van liked, hierin wordt de liked veranderd naar een unlike als daar een command voor gegeven is. Ook onthoudt de functie de likes van een gebruiker als die ingelogd is. Ook staat er een functie login required, dit zorgt voor de route om login in te schakelen. 
+
 ## Concurrerende bestaande websites:
 [https://www.allergicliving.com/advanced-search/](https://www.allergicliving.com/advanced-search/)
 
