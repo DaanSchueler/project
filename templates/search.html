@@ -1,6 +1,5 @@
 {% extends "layout2.html" %}
 
-
 {% block title %}
     search
 {% endblock %}
@@ -9,13 +8,14 @@
 <body>
 
 <form action="{{ url_for('search') }}" method="post">
-
+  <!-- page title -->
   <div class="header">
   <h1>Recipe Search</h1>
   </div>
 
   <div class="searchrow">
 
+  <!-- options and checkboxes for allergies in the first column -->
   <div class="column">
     <h3>Allergies</h3>
 
@@ -70,7 +70,7 @@
     </label>
   </div>
 
-
+  <!-- options and checkboxes for diet in the first column -->
   <div class="column">
     <h3>Diet</h3>
 
@@ -115,7 +115,7 @@
     </label>
   </div>
 
-
+  <!-- options and checkboxes for type of course in the first column -->
   <div class="column">
     <h3>Course</h3>
 
@@ -185,13 +185,11 @@
     </label>
   </div>
 
+<!-- button to submit the selected parameters -->
   <div class="form-group">
     <button class="button1" type="submit">Submit</button>
-</div>
-
-</div>
-
-
+  </div>
+  </div>
 </form>
 </body>
 
