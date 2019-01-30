@@ -13,7 +13,7 @@ Onze webapplicatie maakt het mogelijk om nieuwe gerechten te ontdekken met de fo
 
 - API, Application: Daan
 - HTML, CSS, & projectleider: Rishi
-- Databases, Application: Ruben
+- Databases, Javascript & Application: Ruben
 - HTML & CSS: Tavi
 
 
