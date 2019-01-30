@@ -1,18 +1,21 @@
-# Applicatie Allergenius
-- Tavi 
-- Daan 
-- Ruben
+# Applicatie: Allergenius
+
+- Daan
 - Rishi
+- Ruben
+- Tavi 
 
 ## Samenvatting
 
 Onze webapplicatie maakt het mogelijk om nieuwe gerechten te ontdekken met de focus op mensen met allergieën. Met deze webapplicatie wordt het voor mensen met allergieën makkelijker om nieuwe recepten te vinden die bij hun dieet passen. De webapplicatie biedt de mogelijkheid gerechten op verschillende allergieën te filteren. Daarnaast biedt de webapplicatie de mogelijkheid recepten als favoriet te markeren en deze inclusief persoonlijke ervaring aan een persoonlijke pagina toe te voegen. De webapplicatie zal de meest 'gefavoriete’ gerechten aanreiken door deze hoger op de pagina weer te geven.
 
 ## Eindverantwoordelijken
-- HTML/CSS: Tavi
-- Databases: Ruben
-- API: Daan
-- HTML/CSS: Rishi
+
+- API, Application: Daan
+- HTML, CSS, & projectleider: Rishi
+- Databases, Application: Ruben
+- HTML & CSS: Tavi
+
 
 
 ## Most Viable  product
@@ -39,7 +42,7 @@ De features waar wij over twijfelen zijn:
 ## Afhankelijkheden
 
 ### Databronnen:
-
+-   Yummly.com voor the API
 -   Edamam.com
 -   Cs50.io
 
@@ -50,8 +53,10 @@ De features waar wij over twijfelen zijn:
 -   Javascript
 
 ## Repository
+
 Bij het mapje static hebben we een javascript file staan waar alle javascript code inzit. Ook zit daar de styles file van CSS waarin alle styles in verwerkt is. 
 Bij het mapje templates hebben we alle html van de pagina's. 
+
 Bij de file helpers staat de functie van liked, hierin wordt de liked veranderd naar een unlike als daar een command voor gegeven is. Ook onthoudt de functie de likes van een gebruiker als die ingelogd is. Ook staat er een functie login required, dit zorgt voor de route om login in te schakelen. 
 
 ## Concurrerende bestaande websites:
@@ -77,4 +82,5 @@ Bij de file helpers staat de functie van liked, hierin wordt de liked veranderd 
 ## Moeilijkste delen applicatie
 
 -   Een van de moeilijkste delen van de applicatie wordt het programmeren voor de zoekmachine en het filteren op basis van allergieën.
+Deze is ook de belangrijkste feature van de website.
 
