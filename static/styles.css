@@ -212,7 +212,7 @@
   /*padding-top: 300px;*/
   left: 950px;
   top: 560px;
-  width: 60px;
+  width: 70px;
   height: 30px;
 
 }
@@ -301,6 +301,14 @@
   padding-top: 0px;
 }
 
+#likedby{
+  float:left;
+  padding-top: 10%;
+}
+
+#likerfield{
+  width:165%;
+}
 
 #alert{
 display: none;
