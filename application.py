@@ -31,24 +31,6 @@ Session(app)
 # configure CS50 Library to use SQLite database
 db = SQL("sqlite:///recepts.db")
 
-
-
-# t = requests.get("http://api.yummly.com/v1/api/recipes?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e")
-# x = json.loads(t.text)
-# for i in x['matches']:
-#     recipe_id = i['id']
-#     recipe_name = i['recipeName']
-
-
-#     s = requests.get("http://api.yummly.com/v1/api/recipe/{}?_app_id=6553a906&_app_key=21ef3e857585ece9f97b0831c08af72e".format(recipe_id))
-#     y = json.loads(s.text)
-#     recipe_image = y['images'][0]['imageUrlsBySize']['360']
-
-#     result = db.execute("INSERT INTO likes (id, username, recipe_id, recipe_name, recipe_image) VALUES(:id, :username, :recipe_id, :name, :image)",
-#                             id = 333, username = 'test' , recipe_id = recipe_id, name = recipe_name, image = recipe_image)
-
-
-
 @app.route("/")
 @app.route("/index")
 def index():
@@ -61,14 +43,6 @@ def index():
         likes = db.execute("SELECT recipe_id FROM LIKES WHERE id = :id", id= session["user_id"])
 
         likes_set= {like["recipe_id"] for like in likes}
-
-
-    # print (results)
-
-#     SELECT product_id, count(*) AS total
-# FROM order_line
-# GROUP BY product_id
-# ORDER BY total
 
     return render_template("index.html", results = results, likes = likes_set)
 
@@ -115,12 +89,10 @@ def login():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """Log user in."""
+    """Register new user"""
 
     # forget any user_id
     session.clear()
-
-    error = None
 
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
@@ -167,7 +139,7 @@ def register():
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
-        return render_template("register.html", error=error)
+        return render_template("register.html")
 
 
 @app.route("/logout")
@@ -180,8 +152,10 @@ def logout():
     # redirect user to login form
     return redirect(url_for("index"))
 
+
 @app.route("/search", methods=["GET", "POST"])
 def search():
+    """Serach by selected filter and api call """
 
     if request.method == "POST":
         allergy_terms = str()
@@ -217,22 +191,21 @@ def search():
 
         recepten = x["matches"]
 
-
+        # Render the results of the search on a new page named results 
         return render_template("results.html", recepten=recepten, all_checked=all_checked)
 
+    # if no filters selected render searc page again
     else:
         return render_template("search.html")
 
+
 @app.route("/moreinfo", methods=["GET", "POST"])
 def moreinfo():
+    """Renders spscific recipie"""
 
     if request.method == "POST":
-        if not request.form.get("user"):
-           #Moet nog veranderd worden
-            return apology("Must provide user")
-
         user = request.form.get("user")
-
+        
         results = db.execute("SELECT * FROM likes WHERE username = :username GROUP BY recipe_name",
                         username = user )
         likes_set = liked(session)
@@ -267,9 +240,9 @@ def moreinfo():
 
 
 
-
 @app.route("/account", methods=["GET", "POST"])
 def account():
+    """Account with options to change password and manage favorites of user in session"""
 
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
@@ -298,14 +271,9 @@ def account():
         password = pwd_context.hash(password)
         print(password)
 
-
         #wachtwoord veranderen in database
         rows = db.execute("UPDATE users SET hash = :hash WHERE id = :user_id", user_id=session["user_id"], hash= password)
         print(rows)
-
-        # account verwijderen
-        # rows =("DROP [username] FROM users WHERE username = :username", username=request.form.get("username"))
-
 
         # redirect user to home page
         flash("Password changed succesfully")
@@ -316,9 +284,9 @@ def account():
     return render_template("account.html", results = results, likes = likes_set)
 
 
-
 @app.route("/like", methods=['GET','POST'])
 def like():
+    """Like button"""
     if request.method == "POST":
         # if not session["user_id"]:
         #     return redirect(url_for("login"))
@@ -338,9 +306,10 @@ def like():
         return render_template("like.html")
 
 
-
 @app.route("/unlike", methods=['GET','POST'])
 def unlike():
+    """Unlike button"""
+
     if request.method == "POST":
         # if not session["user_id"]:
         #     return redirect(url_for("login"))
@@ -353,20 +322,3 @@ def unlike():
         result = db.execute("DELETE FROM likes WHERE id = :id AND recipe_id = :recipe_id",
                                 id= session["user_id"], recipe_id = recipe_id)
         return render_template("unlike.html")
-
-
-
-# @app.route("/profile", methods=["GET", "POST"])
-# def profile():
-
-
-#     results = db.execute("SELECT recipe_id, recipe_name, recipe_image FROM likes WHERE id = :id GROUP BY recipe_name",
-#                         id = session["user_id"] )
-#     print (results)
-
-# #     SELECT product_id, count(*) AS total
-# # FROM order_line
-# # GROUP BY product_id
-# # ORDER BY total
-
-#     return render_template("profile.html", results = results)

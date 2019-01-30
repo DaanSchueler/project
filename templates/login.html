@@ -7,34 +7,37 @@
 {% block main %}
 <body>
 <div class="container register">
-                <div class="row">
-                    <div class="col-md-3 register-left">
-                        <img src="https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Fast-Food-PNG-Clipart/Pasta_PNG_Clipart_Image.png?m=1507172108" alt=""/>
-                        <h3>Glad you're back!</h3>
-                    </div>
-                    <div class="col-md-9 register-right">
-                        <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-                        </ul>
-                        <form action="{{ url_for('login') }}" method="post">
-                            <fieldset>
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <h3 class="register-heading">Login</h3>
-                                <div class="row register-form">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Fast-Food-PNG-Clipart/Pasta_PNG_Clipart_Image.png?m=1507172108" alt=""/>
+            <h3>Glad you're back!</h3>
+        </div>
+        <div class="col-md-9 register-right">
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+            </ul>
+            <form action="{{ url_for('login') }}" method="post">
+                <fieldset>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <h3 class="register-heading">Login</h3>
+                            <div class="row register-form">
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text"/>
-                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <input class="form-control" name="password" placeholder="Password" type="password"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-default" type="submit">Login</button>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary" type="submit">Login</button>
+                                </div>
                             </div>
-                            </fieldset>
-                            </form>
-                                </body>
-                                {% endblock %}
+                        </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>    
+</body>
+ {% endblock %}
