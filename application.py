@@ -83,16 +83,15 @@ def login():
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
 
-        # ensure username was submitted
+        # if not username submitted, show flash message
         if not request.form.get("username"):
             flash("Must provide username")
             return render_template("login.html")
 
-        # ensure password was submitted
+        # if not password submitted, show flash message
         elif not request.form.get("password"):
             flash("Must provide password")
             return render_template("login.html")
-
 
         # query database for username
         rows = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
@@ -107,9 +106,7 @@ def login():
         session["username"] = rows[0]["username"]
 
         # redirect user to home page
-        # flash("Login success")     //is het erg nuttig????
         return redirect(url_for("index"))
-        
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
@@ -122,8 +119,6 @@ def register():
 
     # forget any user_id
     session.clear()
-
-    error = None
 
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
@@ -144,25 +139,24 @@ def register():
             return render_template("register.html")
 
         # ensure confirmation password and password match
-        # if not match return apology
         elif not request.form.get("password") == request.form.get("confirmation"):
             flash("Confirmation password and password must match")
             return render_template("register.html")
 
-        # password omzetten naar hash
+        # convert password to hash
         password = request.form.get("password")
         password = pwd_context.hash(password)
 
-        # user in database zetten
+        # insert user into database
         user = db.execute("INSERT INTO users (username, hash) VALUES (:username, :hashx)",
                           username=request.form.get("username"), hashx=password)
 
-        # als de gebruikersnaam al bestaat
+        # if the username exists then show flash message
         if not user:
             flash("User already exists")
             return render_template("register.html")
 
-        # onthou dat de gebruiker ingelogd is
+        # remember that the user has logged in
         session["user_id"] = user
         session["username"] = request.form.get("username")
 
