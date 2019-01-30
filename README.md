@@ -84,3 +84,8 @@ Bij de file helpers staat de functie van liked, hierin wordt de liked veranderd 
 -   Een van de moeilijkste delen van de applicatie was het programmeren voor de zoekmachine en het filteren op basis van allergieën.
 Deze is ook de belangrijkste feature van de website.
 
+
+## screenshot webapp
+
+        project/docs/Screenshot_2019-01-30 Allergenius Home.jpg
+      
