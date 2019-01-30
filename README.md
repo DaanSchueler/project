@@ -85,3 +85,8 @@ Bij de file helpers staat de functie van liked, hierin wordt de liked veranderd 
 Dit is ook de belangrijkste feature van de website.
 -   Verder was het liken en unliken van de recepten met javascript / jQuery een grote opgave.
 
+
+## screenshot webapp
+
+        project/docs/Screenshot_2019-01-30 Allergenius Home.jpg
+      
