@@ -18,6 +18,7 @@
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
     <a class="navbar-brand" href="/">Allergenius</a>
 
+    <!-- navbar when logedin -->
     {% if session.user_id %}
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
@@ -38,7 +39,7 @@
     </ul>
 
     {% else %}
-
+<!-- navbar when not logedin -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('index') }}">Home</a>
@@ -84,6 +85,7 @@
 
 
     {% endif %}
+    <!-- alert when trying to like without loging in -->
   </nav>
   <div class="alert alert-info alert-dismissible fade show" role="alert" id = "alert">
     <a href="{{url_for('login')}}" class="alert-link">Log in</a> first before you start liking!
