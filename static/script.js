@@ -50,4 +50,13 @@ function cannot(){
        
        })
        }
+
+
+   $("#likerfield" ).change(function() {
+    $('#find_user').prop('disabled', false);
+    });
+   
+  
+
+
     
