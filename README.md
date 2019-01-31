@@ -5,8 +5,12 @@
 - Ruben
 - Tavi 
 
-## Video demo
+### Demo Video
 https://youtu.be/9v_t4-cAjSk
+
+### screenshot webapp
+https://github.com/DaanSchueler/project/blob/master/docs/Screenshot_2019-01-30%20Allergenius%20Home.jpg
+
 
 ## Samenvatting
 
@@ -20,34 +24,33 @@ Onze webapplicatie maakt het mogelijk om nieuwe gerechten te ontdekken met de fo
 - HTML & CSS: Tavi
 
 
-
 ## Most Viable  product
-De features waar wij over twijfelen zijn:
+De features waar er twijfels over zijn:
 
--   Optie om ingrediënten te selecteren en op basis daarvan recepten tonen
-
--   Optie om recepten te selecteren op in combinatie met speciale dieet zoals: aziatisch  vegetarisch, frutarian etc.
+-   Optie om ingrediënten te selecteren en op basis daarvan recepten te tonen
+-   Optie om recepten te selecteren op een combinatie met speciale dieet zoals: aziatisch-vegetarisch, frutarian etc.
 
 ## Features
 
--   Opzoeken van recepten gebaseerd op verschillende soorten allergieën, diets en courses. 
+-   Opzoeken van recepten gebaseerd op verschillende soorten allergieën, dieët en type gerecht. 
 
--   Wachtwoord wijzigen account
+-   Registreren, inloggen en het wijzigen van het wachtwoord
 
--   Recepten kunnen worden toegevoegd aan favorieten
+-   Recepten kunnen worden toegevoegd of verwijderd worden als favorieten
 
--   Als een recept wordt toegevoegd aan favorieten wordt het recept op de persoonlijke pagina geplaatst
+-   Als een recept wordt toegevoegd aan favorieten wordt het recept op een profiel pagina geplaatst
 
--   Het bezoeken van andermans persoonlijke pagina
+-   Het bezoeken van de profiel pagina van een ander gebruiker
 
 -   Homepage met afbeeldingen van meest gelikte recepten
 
 ## Afhankelijkheden
 
-### Databronnen:
--   Yummly.com voor the API
+### Databronnen en Tools:
+-   Yummly.com voor de API
 -   Edamam.com
--   Cs50.io
+-   CS50.io
+-   Microsoft Visual Studio
 
 
 ### Externe componenten:
@@ -57,10 +60,10 @@ De features waar wij over twijfelen zijn:
 
 ## Repository
 
-Bij het mapje static hebben we een javascript file staan waar alle javascript code inzit. Ook zit daar de styles file van CSS waarin alle styles in verwerkt is. 
-Bij het mapje templates hebben we alle html van de pagina's. 
+Bij het mapje static hebben we een javascript file staan met alle javascript code. Er is ook een styles file met CSS code voor veel gebruikte styles van ons eind product. 
+Bij het mapje templates hebben we alle html code van de aangemaakte pagina's. 
 
-Bij de file helpers staat de functie van liked, hierin wordt de liked veranderd naar een unlike als daar een command voor gegeven is. Ook onthoudt de functie de likes van een gebruiker als die ingelogd is. Ook staat er een functie login required, dit zorgt voor de route om login in te schakelen. 
+Bij de file helpers staat de functie van liken, hierin wordt een like veranderd naar een unlike als daar een command voor gegeven is. Verder onthoudt de functie de likes van een gebruiker als die ingelogd is. Er staat er een functie, login required, dit zorgt voor de route om login in te schakelen. 
 
 ## Concurrerende bestaande websites:
 [https://www.allergicliving.com/advanced-search/](https://www.allergicliving.com/advanced-search/)
@@ -82,14 +85,10 @@ Bij de file helpers staat de functie van liked, hierin wordt de liked veranderd 
 
 -   Ook deze website lijkt op de andere websites met een klein verschil. De search engine is in twee blokken opgedeeld. Een blok waarmee je de allergieën kan selecteren en een ander blok waarbij je kan selecteren op het type recepten zoals ontbijt en dessert.
 
-## Moeilijkste delen applicatie
+## Moeilijkste delen van applicatie
 
 -   Een van de moeilijkste delen van de applicatie was het programmeren van zoekmachine en het filteren op basis van allergieën.
 Dit is ook de belangrijkste feature van de website.
 -   Verder was het liken en unliken van de recepten met javascript / jQuery een grote opgave.
 
-
-## screenshot webapp
-
-        project/docs/Screenshot_2019-01-30 Allergenius Home.jpg
       
