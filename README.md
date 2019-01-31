@@ -8,7 +8,7 @@
 ### Demo Video
 https://youtu.be/9v_t4-cAjSk
 
-### screenshot webapp
+### Screenshot
 https://github.com/DaanSchueler/project/blob/master/docs/Screenshot_2019-01-30%20Allergenius%20Home.jpg
 
 
@@ -63,7 +63,7 @@ De features waar er twijfels over zijn:
 Bij het mapje static hebben we een javascript file staan met alle javascript code. Er is ook een styles file met CSS code voor veel gebruikte styles van ons eind product. 
 Bij het mapje templates hebben we alle html code van de aangemaakte pagina's. 
 
-Bij de file helpers staat de functie van liken, hierin wordt een like veranderd naar een unlike als daar een command voor gegeven is. Verder onthoudt de functie de likes van een gebruiker als die ingelogd is. Er staat er een functie, login required, dit zorgt voor de route om login in te schakelen. 
+Bij de file helpers staat de functie van liken, hierin wordt een like veranderd naar een unlike als daar een command voor gegeven is. Verder onthoudt de functie de likes van een gebruiker als die ingelogd is. Er staat een functie, login required, dit zorgt voor de route om login in te schakelen. 
 
 ## Concurrerende bestaande websites:
 [https://www.allergicliving.com/advanced-search/](https://www.allergicliving.com/advanced-search/)
