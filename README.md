@@ -5,6 +5,9 @@
 - Ruben
 - Tavi 
 
+## Video demo
+https://youtu.be/9v_t4-cAjSk
+
 ## Samenvatting
 
 Onze webapplicatie maakt het mogelijk om nieuwe gerechten te ontdekken met de focus op mensen met allergieën. Met deze webapplicatie wordt het voor mensen met allergieën makkelijker om nieuwe recepten te vinden die bij hun dieet passen. De webapplicatie biedt de mogelijkheid gerechten op verschillende allergieën te filteren. Daarnaast biedt de webapplicatie de mogelijkheid recepten als favoriet te markeren en deze inclusief persoonlijke ervaring aan een persoonlijke pagina toe te voegen. De webapplicatie zal de meest 'gefavoriete’ gerechten aanreiken door deze hoger op de pagina weer te geven.
