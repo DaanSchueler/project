@@ -11,6 +11,10 @@ https://youtu.be/9v_t4-cAjSk
 ### Screenshot
 https://github.com/DaanSchueler/project/blob/master/docs/Screenshot_2019-01-30%20Allergenius%20Home.jpg
 
+### Website
+https://webik.quinner.nl
+
+Met dank aan Quinten om de website te hosten.
 
 ## Samenvatting
 
